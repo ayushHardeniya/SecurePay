@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SecurePay - ayushHardeniya</title>
   <style>
-    /* Basic Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,7 +15,6 @@
       background-color: #f4f4f4;
       color: #333;
     }
-    /* Header Section */
     .header {
       width: 100%;
       background: url('PayHeader.PNG') no-repeat center;
@@ -24,22 +22,20 @@
       height: 200px;
       position: relative;
     }
-    /* Logo (Dynamic Appearance) */
-    .logo-container {
+    .logo {
       position: fixed;
-      top: 15px;
+      top: -100px;
       left: 20px;
       width: 80px;
       height: auto;
-      transition: opacity 0.5s ease-in-out;
+      transition: top 0.3s ease-in-out;
     }
-    .hidden {
-      opacity: 0;
+    .show-logo {
+      top: 20px;
     }
-    /* Main Container */
     .container {
       max-width: 800px;
-      margin: 30px auto;
+      margin: 20px auto;
       background: #fff;
       padding: 30px;
       border-radius: 8px;
@@ -47,90 +43,27 @@
     }
     h1 {
       text-align: center;
-      font-size: 26px;
-      margin-bottom: 5px;
-    }
-    .subheading {
-      text-align: center;
-      font-size: 14px;
-      color: #666;
       margin-bottom: 20px;
     }
-    /* Improved Headings */
     h2 {
-      font-size: 22px;
       color: #222;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 40px 0 15px;
-      padding-bottom: 8px;
-      border-bottom: 3px solid #007bff;
-      display: inline-block;
-    }
-    p {
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-    /* Payment Button */
-    .button {
-      display: inline-block;
-      background: #28a745;
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 4px;
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-    .button:hover {
-      background: #218838;
-    }
-    /* UPI ID List */
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 30px;
-    }
-    li {
-      margin-bottom: 8px;
+      margin: 20px 0 10px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #ddd;
+      align-items: center;
     }
-    .upi-id {
-      font-size: 16px;
-      color: #333;
-      flex: 1;
+    .icon {
+      width: 40px;
+      height: auto;
     }
-    .copy-btn {
-      background: #007bff;
-      border: none;
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .copy-btn:hover {
-      background: #0056b3;
-    }
-    /* QR Code Section */
-    .qr-section {
+    .footer {
       text-align: center;
-      margin: 40px 0;
-    }
-    .qr-section img {
-      max-width: 250px;
-      border: 2px solid #ddd;
+      margin-top: 30px;
+      padding: 20px;
+      background: #222;
+      color: #fff;
+      font-size: 14px;
       border-radius: 4px;
-      padding: 5px;
-    }
-    /* Bank Transfer Section */
-    .bank-details p {
-      margin: 8px 0;
     }
   </style>
   <script>
@@ -138,64 +71,50 @@
       var text = document.getElementById(elementId).innerText;
       navigator.clipboard.writeText(text).then(function() {
         alert('Copied: ' + text);
-      }, function(err) {
-        alert('Failed to copy text.');
       });
     }
-    // Show logo only when header scrolls away
     window.addEventListener('scroll', function() {
-      var headerHeight = document.querySelector('.header').offsetHeight;
-      var logo = document.querySelector('.logo-container');
-      if (window.scrollY > headerHeight) {
-        logo.classList.remove('hidden');
+      var logo = document.querySelector('.logo');
+      if (window.scrollY > 180) {
+        logo.classList.add('show-logo');
       } else {
-        logo.classList.add('hidden');
+        logo.classList.remove('show-logo');
       }
     });
   </script>
 </head>
 <body>
-  <!-- Header with Background and Logo -->
   <div class="header"></div>
-  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo-container hidden">
+  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
   
-  <!-- Main Content -->
   <div class="container">
     <h1>SecurePay - ayushHardeniya</h1>
-    <p class="subheading">[Legal Name: Ayush Sharma]</p>
-    
-    <!-- UPI Payment -->
-    <h2>UPI Payment</h2>
-    <p>Click below to pay via UPI:</p>
+    <h2>UPI Payment <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="UPI Icon" class="icon"></h2>
     <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
-    
-    <p>Or use any of the below UPI IDs (click the copy button):</p>
     <ul>
-      <li><span id="upi1" class="upi-id">ayushhardeniya@oksbi</span><button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
-      <li><span id="upi2" class="upi-id">ayushhardeniya@okaxis</span><button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
-      <li><span id="upi3" class="upi-id">ayushhardeniya@okicici</span><button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
-      <li><span id="upi4" class="upi-id">ayushhardeniya@okhdfcbank</span><button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
-      <li><span id="upi5" class="upi-id">ayushhardeniya@axl</span><button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
-      <li><span id="upi6" class="upi-id">ayushhardeniya@ybl</span><button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
-      <li><span id="upi7" class="upi-id">ayushhardeniya@ibl</span><button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
+      <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
+      <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
+      <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
+      <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
+      <li><span id="upi5">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
+      <li><span id="upi6">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
+      <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
     </ul>
-    
-    <!-- QR Code Payment -->
-    <h2 style="text-align: center;">QR Code Payment</h2>
+    <h2>QR Code Payment <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="QR Icon" class="icon"></h2>
     <div class="qr-section">
-      <p>Scan this QR code to pay:</p>
       <img src="GooglePayQR.png" alt="UPI QR Code">
     </div>
-    
-    <!-- Bank Transfer -->
-    <h2>Bank Transfer (NEFT/RTGS/IMPS)</h2>
-    <div class="bank-details">
-      <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
-      <p><strong>Bank Name:</strong> State Bank of India</p>
-      <p><strong>Account Number:</strong> 43246814954</p>
-      <p><strong>IFSC Code:</strong> SBIN0002387</p>
-      <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
-    </div>
+    <h2>Bank Transfer (NEFT/IMPS/RTGS) <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="Bank Icon" class="icon"></h2>
+    <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
+    <p><strong>Bank Name:</strong> State Bank of India</p>
+    <p><strong>Account Number:</strong> 43246814954</p>
+    <p><strong>IFSC Code:</strong> SBIN0002387</p>
+    <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
+  </div>
+  
+  <div class="footer">
+    COPYRIGHT Reserved @2025<br>
+    ayushHardeniya
   </div>
 </body>
 </html>
