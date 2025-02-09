@@ -49,21 +49,66 @@
       color: #222;
       margin: 20px 0 10px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
-    .icon {
-      width: 40px;
-      height: auto;
+    .favicon {
+      width: 30px;
+      height: 30px;
     }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      background: #222;
+    .button {
+      display: inline-block;
+      background: #28a745;
       color: #fff;
-      font-size: 14px;
+      text-decoration: none;
+      padding: 10px 20px;
       border-radius: 4px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .button:hover {
+      background: #218838;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 6px 0;
+    }
+    .copy-btn {
+      background: #007bff;
+      border: none;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background: #0056b3;
+    }
+    .qr-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .qr-section img {
+      max-width: 200px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+    }
+    .footer-section {
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      padding: 15px 0;
+      font-size: 14px;
+      margin-top: 30px;
     }
   </style>
   <script>
@@ -89,32 +134,25 @@
   
   <div class="container">
     <h1>SecurePay - ayushHardeniya</h1>
-    <h2>UPI Payment <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="UPI Icon" class="icon"></h2>
+    <h2>UPI Payment <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/UPI-Logo-vector-01.svg" class="favicon"></h2>
     <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
     <ul>
       <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
-      <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
-      <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
-      <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
-      <li><span id="upi5">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
-      <li><span id="upi6">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
-      <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
     </ul>
-    <h2>QR Code Payment <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="QR Icon" class="icon"></h2>
+    <h2>QR Code Payment <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Qr-icon.png" class="favicon"></h2>
     <div class="qr-section">
       <img src="GooglePayQR.png" alt="UPI QR Code">
     </div>
-    <h2>Bank Transfer (NEFT/IMPS/RTGS) <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="Bank Icon" class="icon"></h2>
+    <h2>Bank Transfer (NEFT/IMPS/RTGS) <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Bank_icon.svg" class="favicon"></h2>
     <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
     <p><strong>Bank Name:</strong> State Bank of India</p>
     <p><strong>Account Number:</strong> 43246814954</p>
     <p><strong>IFSC Code:</strong> SBIN0002387</p>
-    <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
   </div>
-  
-  <div class="footer">
-    COPYRIGHT Reserved @2025<br>
-    ayushHardeniya
+
+  <div class="footer-section">
+    <p>&copy; 2025 COPYRIGHT Reserved</p>
+    <p>ayushHardeniya</p>
   </div>
 </body>
 </html>
