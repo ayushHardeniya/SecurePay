@@ -16,7 +16,7 @@
       background-color: #f4f4f4;
       color: #333;
     }
-    /* Header Section with Background Image and Logo */
+    /* Header Section */
     .header {
       width: 100%;
       background: url('PayHeader.PNG') no-repeat center;
@@ -24,17 +24,22 @@
       height: 200px;
       position: relative;
     }
-    .header .logo {
-      position: absolute;
-      top: 20px;
+    /* Logo (Dynamic Appearance) */
+    .logo-container {
+      position: fixed;
+      top: 15px;
       left: 20px;
       width: 80px;
       height: auto;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .hidden {
+      opacity: 0;
     }
     /* Main Container */
     .container {
       max-width: 800px;
-      margin: 20px auto;
+      margin: 30px auto;
       background: #fff;
       padding: 30px;
       border-radius: 8px;
@@ -42,15 +47,29 @@
     }
     h1 {
       text-align: center;
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+    .subheading {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
       margin-bottom: 20px;
     }
+    /* Improved Headings */
     h2 {
+      font-size: 22px;
       color: #222;
-      margin: 20px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 40px 0 15px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #007bff;
+      display: inline-block;
     }
     p {
       line-height: 1.6;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     /* Payment Button */
     .button {
@@ -58,28 +77,28 @@
       background: #28a745;
       color: #fff;
       text-decoration: none;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border-radius: 4px;
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
     }
     .button:hover {
       background: #218838;
     }
-    /* UPI ID List Styling */
+    /* UPI ID List */
     ul {
       list-style: none;
       padding-left: 0;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
     li {
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 0;
-      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
     }
     .upi-id {
       font-size: 16px;
@@ -90,11 +109,10 @@
       background: #007bff;
       border: none;
       color: #fff;
-      padding: 5px 10px;
+      padding: 6px 12px;
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
-      margin-left: 10px;
     }
     .copy-btn:hover {
       background: #0056b3;
@@ -102,7 +120,7 @@
     /* QR Code Section */
     .qr-section {
       text-align: center;
-      margin: 20px 0;
+      margin: 40px 0;
     }
     .qr-section img {
       max-width: 250px;
@@ -124,64 +142,53 @@
         alert('Failed to copy text.');
       });
     }
+    // Show logo only when header scrolls away
+    window.addEventListener('scroll', function() {
+      var headerHeight = document.querySelector('.header').offsetHeight;
+      var logo = document.querySelector('.logo-container');
+      if (window.scrollY > headerHeight) {
+        logo.classList.remove('hidden');
+      } else {
+        logo.classList.add('hidden');
+      }
+    });
   </script>
 </head>
 <body>
   <!-- Header with Background and Logo -->
-  <div class="header">
-    <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
-  </div>
+  <div class="header"></div>
+  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo-container hidden">
   
-  <!-- Main Content Container -->
+  <!-- Main Content -->
   <div class="container">
     <h1>SecurePay - ayushHardeniya</h1>
+    <p class="subheading">[Legal Name: Ayush Sharma]</p>
     
-    <!-- UPI Payment Section -->
+    <!-- UPI Payment -->
     <h2>UPI Payment</h2>
     <p>Click below to pay via UPI:</p>
     <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
     
     <p>Or use any of the below UPI IDs (click the copy button):</p>
     <ul>
-      <li>
-        <span id="upi1" class="upi-id">ayushhardeniya@oksbi</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button>
-      </li>
-      <li>
-        <span id="upi2" class="upi-id">ayushhardeniya@okaxis</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button>
-      </li>
-      <li>
-        <span id="upi3" class="upi-id">ayushhardeniya@okicici</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button>
-      </li>
-      <li>
-        <span id="upi4" class="upi-id">ayushhardeniya@okhdfcbank</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button>
-      </li>
-      <li>
-        <span id="upi5" class="upi-id">ayushhardeniya@axl</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button>
-      </li>
-      <li>
-        <span id="upi6" class="upi-id">ayushhardeniya@ybl</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button>
-      </li>
-      <li>
-        <span id="upi7" class="upi-id">ayushhardeniya@ibl</span>
-        <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button>
-      </li>
+      <li><span id="upi1" class="upi-id">ayushhardeniya@oksbi</span><button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
+      <li><span id="upi2" class="upi-id">ayushhardeniya@okaxis</span><button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
+      <li><span id="upi3" class="upi-id">ayushhardeniya@okicici</span><button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
+      <li><span id="upi4" class="upi-id">ayushhardeniya@okhdfcbank</span><button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
+      <li><span id="upi5" class="upi-id">ayushhardeniya@axl</span><button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
+      <li><span id="upi6" class="upi-id">ayushhardeniya@ybl</span><button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
+      <li><span id="upi7" class="upi-id">ayushhardeniya@ibl</span><button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
     </ul>
     
-    <!-- QR Code Payment Section (Center Aligned) -->
+    <!-- QR Code Payment -->
     <h2 style="text-align: center;">QR Code Payment</h2>
     <div class="qr-section">
       <p>Scan this QR code to pay:</p>
       <img src="GooglePayQR.png" alt="UPI QR Code">
     </div>
     
-    <!-- Bank Transfer Section (Left Aligned) -->
-    <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
+    <!-- Bank Transfer -->
+    <h2>Bank Transfer (NEFT/RTGS/IMPS)</h2>
     <div class="bank-details">
       <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
       <p><strong>Bank Name:</strong> State Bank of India</p>
