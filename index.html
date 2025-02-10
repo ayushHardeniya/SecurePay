@@ -4,52 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: left;
+        }
+        .header {
+            background: url('header-image.jpg') no-repeat center center;
+            background-size: cover;
+            height: 250px;
+            position: relative;
+        }
+        .logo {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .hidden-logo {
+            opacity: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            padding: 15px;
+            background: #ffffff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .upi-section, .bank-section {
+            background: #e3f2fd;
+        }
+        .qr-section {
+            text-align: center;
+            background: #fff3e0;
+        }
+        .copy-btn {
+            float: right;
+            cursor: pointer;
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .divider {
+            height: 2px;
+            background: #ddd;
+            margin: 15px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="header-image.jpg" alt="Header Image" class="header-image">
-        <div class="floating-logo">
-            <img src="logo.png" alt="Logo">
+    <div class="header"></div>
+    <img src="logo.png" class="logo" id="floatingLogo">
+    
+    <div class="container">
+        <div class="section upi-section">
+            <h2>Payment by UPI</h2>
+            <p>Or make payment to any of the below UPI IDs:</p>
+            <p>ayushhardeniya@oksbi <button class="copy-btn">Copy</button></p>
+            <p>ayushhardeniya@okicici <button class="copy-btn">Copy</button></p>
+            <p>ayushhardeniya@okaxis <button class="copy-btn">Copy</button></p>
+            <p>ayushhardeniya@okhdfcbank <button class="copy-btn">Copy</button></p>
+            <p>ayushhardeniya@ybl <button class="copy-btn">Copy</button></p>
+            <p>ayushhardeniya@acl <button class="copy-btn">Copy</button></p>
+            <p>ayushhardeniya@ibl <button class="copy-btn">Copy</button></p>
         </div>
-    </header>
-
-    <section class="payment-options">
-        <h2>Make a Payment</h2>
-        <button class="upi-payment-btn">Pay via UPI</button>
-        <p>Or Make Payment to any of the below UPI IDs:</p>
-        <div class="upi-ids">
-            <div class="upi-id">ayushhardeniya@oksbi <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@oksbi')">Copy</button></div>
-            <div class="upi-id">ayushhardeniya@okicici <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@okicici')">Copy</button></div>
-            <div class="upi-id">ayushhardeniya@okaxis <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@okaxis')">Copy</button></div>
-            <div class="upi-id">ayushhardeniya@okhdfcbank <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@okhdfcbank')">Copy</button></div>
-            <div class="upi-id">ayushhardeniya@ybl <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@ybl')">Copy</button></div>
-            <div class="upi-id">ayushhardeniya@acl <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@acl')">Copy</button></div>
-            <div class="upi-id">ayushhardeniya@ibl <button class="copy-btn" onclick="copyToClipboard('ayushhardeniya@ibl')">Copy</button></div>
+        
+        <div class="divider"></div>
+        
+        <div class="section qr-section">
+            <h2>Scan & Pay</h2>
+            <img src="qr-code.png" alt="QR Code" width="200">
         </div>
-    </section>
-
-    <section class="qr-section">
-        <h2>Scan QR Code</h2>
-        <img src="qrcode.png" alt="QR Code" class="qr-code">
-    </section>
-
-    <section class="bank-transfer">
-        <h2>Bank Transfer</h2>
-        <div class="bank-details">
-            <p><strong>Account Holder's Name:</strong> <span class="copyable" onclick="copyToClipboard('Ayush Sharma')">Ayush Sharma</span></p>
-            <p><strong>Account Number:</strong> <span class="copyable" onclick="copyToClipboard('4347XXXXXXXX')">4347XXXXXXXX</span></p>
-            <p><strong>IFSC Code:</strong> <span class="copyable" onclick="copyToClipboard('SBIN000XXXX')">SBIN000XXXX</span></p>
+        
+        <div class="divider"></div>
+        
+        <div class="section bank-section">
+            <h2>Bank Transfer</h2>
+            <p><strong>Account Holder's Name:</strong> <span id="accName">Ayush Sharma</span> <button class="copy-btn">Copy</button></p>
+            <p><strong>Account Number:</strong> <span id="accNum">4347XXXXXXXX</span> <button class="copy-btn">Copy</button></p>
+            <p><strong>IFSC Code:</strong> <span id="ifsc">SBIN000XXXX</span> <button class="copy-btn">Copy</button></p>
         </div>
-    </section>
-
+    </div>
+    
     <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Copied: " + text);
-            });
-        }
+        document.addEventListener("scroll", function() {
+            var logo = document.getElementById("floatingLogo");
+            if (window.scrollY > 200) {
+                logo.classList.remove("hidden-logo");
+            } else {
+                logo.classList.add("hidden-logo");
+            }
+        });
     </script>
 </body>
 </html>
