@@ -33,9 +33,6 @@
     .show-logo {
       top: 20px;
     }
-    .hide-logo {
-      top: -100px;
-    }
     .container {
       max-width: 800px;
       margin: 20px auto;
@@ -115,16 +112,9 @@
     }
     window.addEventListener('scroll', function() {
       var logo = document.querySelector('.logo');
-      var footer = document.querySelector('.footer');
-      var headerHeight = document.querySelector('.header').offsetHeight;
-      var footerOffset = footer.offsetTop;
-      var scrollPosition = window.scrollY + window.innerHeight;
-      
-      if (window.scrollY > headerHeight && scrollPosition < footerOffset) {
+      if (window.scrollY > 180) {
         logo.classList.add('show-logo');
-        logo.classList.remove('hide-logo');
       } else {
-        logo.classList.add('hide-logo');
         logo.classList.remove('show-logo');
       }
     });
