@@ -7,47 +7,48 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>SecurePay - ayushHardeniya</h1>
-        </div>
+    <header id="main-header">
+        <img src="PayHeader.PNG" alt="SecurePay Header" class="header-img">
     </header>
-
-    <div class="floating-logo" id="floatingLogo">
-        <img src="profilePic.jpg" alt="Profile Logo">
-    </div>
-
-    <div class="container">
-        <section class="upi-payment">
+    
+    <img src="profilePic.jpg" alt="Logo" id="floating-logo" class="hidden">
+    
+    <main>
+        <section id="upi-section">
             <h2>UPI Payment</h2>
-            <input type="number" placeholder="Enter amount (up to ₹1,00,000)" max="100000">
-            <button>Pay via UPI</button>
-            <div class="upi-ids">
-                <p>UPI IDs:</p>
-                <button onclick="copyToClipboard('ayushhardeniya@oksbi')">ayushhardeniya@oksbi</button>
-                <button onclick="copyToClipboard('ayushhardeniya@okaxis')">ayushhardeniya@okaxis</button>
-                <button onclick="copyToClipboard('ayushhardeniya@okicici')">ayushhardeniya@okicici</button>
-                <button onclick="copyToClipboard('ayushhardeniya@okhdfcbank')">ayushhardeniya@okhdfcbank</button>
-                <button onclick="copyToClipboard('ayushhardeniya@axl')">ayushhardeniya@axl</button>
-                <button onclick="copyToClipboard('ayushhardeniya@ybl')">ayushhardeniya@ybl</button>
-                <button onclick="copyToClipboard('ayushhardeniya@ibl')">ayushhardeniya@ibl</button>
-            </div>
+            <p>Pay via UPI using any of the following IDs:</p>
+            <ul>
+                <li>ayushhardeniya@oksbi <button class="copy-btn" data-clipboard="ayushhardeniya@oksbi">Copy</button></li>
+                <li>ayushhardeniya@okaxis <button class="copy-btn" data-clipboard="ayushhardeniya@okaxis">Copy</button></li>
+                <li>ayushhardeniya@okicici <button class="copy-btn" data-clipboard="ayushhardeniya@okicici">Copy</button></li>
+                <li>ayushhardeniya@okhdfcbank <button class="copy-btn" data-clipboard="ayushhardeniya@okhdfcbank">Copy</button></li>
+                <li>ayushhardeniya@axl <button class="copy-btn" data-clipboard="ayushhardeniya@axl">Copy</button></li>
+                <li>ayushhardeniya@ybl <button class="copy-btn" data-clipboard="ayushhardeniya@ybl">Copy</button></li>
+                <li>ayushhardeniya@ibl <button class="copy-btn" data-clipboard="ayushhardeniya@ibl">Copy</button></li>
+            </ul>
+            <label for="upi-amount">Enter Amount:</label>
+            <input type="number" id="upi-amount" min="1" max="100000" placeholder="Enter amount (₹)">
+            <button id="pay-upi">Pay by UPI</button>
         </section>
 
-        <section class="qr-code-payment">
+        <section id="qr-section">
             <h2>QR Code Payment</h2>
             <img src="GooglePayQR.png" alt="QR Code" class="qr-code">
+            <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
         </section>
-
-        <section class="bank-transfer">
+        
+        <section id="bank-section">
             <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-            <p>Account Holder's Name: Ayush Sharma</p>
-            <p>Bank Name: State Bank of India</p>
-            <p>Account Number: 43246814954</p>
-            <p>IFSC Code: SBIN0002387</p>
-            <p>Branch/Code: KHAIR (2387)</p>
+            <p><strong>Account Holder:</strong> Ayush Sharma</p>
+            <p><strong>Bank Name:</strong> State Bank of India</p>
+            <p><strong>Account Number:</strong> 43246814954</p>
+            <p><strong>IFSC Code:</strong> SBIN0002387</p>
+            <p><strong>Branch:</strong> KHAIR (2387)</p>
         </section>
-    </div>
-
-    <div class="footer-illusion">
-        <p>© COPYRIGHT Reserved 2025 <span class="highlight">ayushHardeniya</span ⬤
+    </main>
+    
+    <div class="fake-footer">© COPYRIGHT Reserved 2025 - ayushHardeniya</div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
