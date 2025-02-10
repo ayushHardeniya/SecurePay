@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SecurePay - ayushHardeniya</title>
+  <title>SecurePay - Ayush Hardeniya</title>
   <style>
     * {
       box-sizing: border-box;
@@ -20,17 +20,23 @@
       background: url('PayHeader.PNG') no-repeat center;
       background-size: cover;
       height: 200px;
+      position: relative;
     }
     .logo {
       position: fixed;
-      top: 20px;
+      top: -100px;
       left: 20px;
       width: 80px;
-      height: auto;
+      transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .show-logo {
+      top: 20px;
+      opacity: 1;
     }
     .container {
       max-width: 800px;
-      margin: 30px auto;
+      margin: 20px auto;
       background: #fff;
       padding: 30px;
       border-radius: 8px;
@@ -40,32 +46,36 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    h2 {
-      color: #222;
-      margin-top: 20px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
+    .divider {
+      height: 2px;
+      background: #ddd;
+      margin: 20px 0;
     }
     .button {
       display: block;
       background: #28a745;
       color: #fff;
+      text-decoration: none;
       text-align: center;
       padding: 10px;
       border-radius: 4px;
       font-size: 18px;
       font-weight: bold;
       margin: 15px 0;
-      text-decoration: none;
     }
     .button:hover {
       background: #218838;
     }
     .section {
-      background: #f9f9f9;
       padding: 20px;
-      margin-top: 20px;
-      border-radius: 8px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .section.upi {
+      background-color: #e3f2fd;
+    }
+    .section.bank {
+      background-color: #ffebee;
     }
     ul {
       list-style: none;
@@ -88,9 +98,10 @@
     .copy-btn:hover {
       background: #0056b3;
     }
-    .bank-transfer {
+    .bank-details {
       display: flex;
       justify-content: space-between;
+      padding: 5px 0;
     }
     .qr-section {
       text-align: center;
@@ -106,16 +117,23 @@
       text-align: center;
       background: #ddd;
       padding: 10px;
-      margin-top: 20px;
     }
   </style>
   <script>
     function copyToClipboard(elementId) {
       var text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(() => {
+      navigator.clipboard.writeText(text).then(function() {
         alert('Copied: ' + text);
       });
     }
+    window.addEventListener('scroll', function() {
+      var logo = document.querySelector('.logo');
+      if (window.scrollY > 180) {
+        logo.classList.add('show-logo');
+      } else {
+        logo.classList.remove('show-logo');
+      }
+    });
   </script>
 </head>
 <body>
@@ -123,49 +141,31 @@
   <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
   
   <div class="container">
-    <h1>SecurePay - ayushHardeniya</h1>
+    <h1>SecurePay - Ayush Hardeniya</h1>
     
-    <div class="section">
+    <div class="section upi">
       <h2>UPI Payment</h2>
       <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
-      <p>Or Make Payment to any of below UPI IDs:</p>
+      <p>Or make payment to any of the below UPI IDs:</p>
       <ul>
         <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
         <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
         <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
+        <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
       </ul>
     </div>
     
-    <div class="section">
-      <h2>QR Code Payment</h2>
-      <div class="qr-section">
-        <img src="GooglePayQR.png" alt="UPI QR Code">
-        <br>
-        <button class="button">Download QR Code</button>
-      </div>
-    </div>
+    <div class="divider"></div>
     
-    <div class="section">
+    <div class="section bank">
       <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-      <div class="bank-transfer">
-        <p><strong>Account Holder's Name:</strong></p>
-        <p id="acc-name" onclick="copyToClipboard('acc-name')">Ayush Sharma</p>
-      </div>
-      <div class="bank-transfer">
-        <p><strong>Bank Name:</strong></p>
-        <p>State Bank of India</p>
-      </div>
-      <div class="bank-transfer">
-        <p><strong>Account Number:</strong></p>
-        <p id="acc-number" onclick="copyToClipboard('acc-number')">43246814954</p>
-      </div>
-      <div class="bank-transfer">
-        <p><strong>IFSC Code:</strong></p>
-        <p id="ifsc-code" onclick="copyToClipboard('ifsc-code')">SBIN0002387</p>
-      </div>
+      <div class="bank-details"><strong>Account Holder's Name:</strong> <span id="acc-name" onclick="copyToClipboard('acc-name')">Ayush Sharma</span></div>
+      <div class="bank-details"><strong>Bank Name:</strong> State Bank of India</div>
+      <div class="bank-details"><strong>Account Number:</strong> <span id="acc-number" onclick="copyToClipboard('acc-number')">43246814954</span></div>
+      <div class="bank-details"><strong>IFSC Code:</strong> <span id="ifsc" onclick="copyToClipboard('ifsc')">SBIN0002387</span></div>
     </div>
   </div>
   
-  <div class="footer">COPYRIGHT © 2025 ayushHardeniya</div>
+  <div class="footer">COPYRIGHT © 2025 Ayush Hardeniya</div>
 </body>
 </html>
