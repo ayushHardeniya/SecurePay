@@ -1,165 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SecurePay - ayushHardeniya</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body, html {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    .header {
-      width: 100%;
-      background: url('PayHeader.PNG') no-repeat center;
-      background-size: cover;
-      height: 200px;
-      position: relative;
-    }
-    .logo {
-      position: fixed;
-      top: -100px;
-      left: 20px;
-      width: 80px;
-      height: auto;
-      transition: top 0.3s ease-in-out;
-    }
-    .show-logo {
-      top: 20px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    h2 img {
-      width: 24px;
-      height: auto;
-      vertical-align: middle;
-      margin-left: 10px;
-    }
-    .button {
-      display: block;
-      width: fit-content;
-      margin: 0 auto 15px;
-      background: #28a745;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .button:hover {
-      background: #218838;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    li {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 6px 0;
-    }
-    .copy-btn {
-      background: #007bff;
-      border: none;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .copy-btn:hover {
-      background: #0056b3;
-    }
-    .qr-section {
-      text-align: center;
-    }
-    .qr-section img {
-      max-width: 200px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
-      padding: 5px;
-    }
-    .footer-section {
-      background: #ddd;
-      text-align: center;
-      padding: 10px;
-      font-size: 14px;
-    }
-  </style>
-  <script>
-    function copyToClipboard(elementId) {
-      var text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(function() {
-        alert('Copied: ' + text);
-      });
-    }
-    window.addEventListener('scroll', function() {
-      var logo = document.querySelector('.logo');
-      if (window.scrollY > 180) {
-        logo.classList.add('show-logo');
-      } else {
-        logo.classList.remove('show-logo');
-      }
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecurePay - ayushHardeniya</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="header"></div>
-  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
-  
-  <div class="container">
-    <h1>SecurePay - ayushHardeniya</h1>
-    
-    <section>
-      <h2>UPI Payment <img src="https://images.app.goo.gl/Sm3nSdoJCGscEK327" alt="UPI Icon"></h2>
-      <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR&am=100000" class="button">Pay via UPI</a>
-      <ul>
-        <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
-        <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
-        <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
-        <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
-      </ul>
-    </section>
-    
-    <section class="qr-section">
-      <h2>QR Code Payment <img src="QRIcon.png" alt="QR Icon"></h2>
-      <img src="GooglePayQR.png" alt="UPI QR Code">
-    </section>
-    
-    <section>
-      <h2>Bank Transfer (NEFT/IMPS/RTGS) <img src="BankIcon.png" alt="Bank Icon"></h2>
-      <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
-      <p><strong>Bank Name:</strong> State Bank of India</p>
-      <p><strong>Account Number:</strong> 43246814954</p>
-      <p><strong>IFSC Code:</strong> SBIN0002387</p>
-      <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
-    </section>
-  </div>
-  
-  <div class="footer-section">
-    <p>© COPYRIGHT Reserved 2025</p>
-    <p>ayushHardeniya</p>
-  </div>
-</body>
-</html>
+    <header>
+        <div class="header-content">
+            <h1>SecurePay - ayushHardeniya</h1>
+        </div>
+    </header>
+
+    <div class="floating-logo" id="floatingLogo">
+        <img src="profilePic.jpg" alt="Profile Logo">
+    </div>
+
+    <div class="container">
+        <section class="upi-payment">
+            <h2>UPI Payment</h2>
+            <input type="number" placeholder="Enter amount (up to ₹1,00,000)" max="100000">
+            <button>Pay via UPI</button>
+            <div class="upi-ids">
+                <p>UPI IDs:</p>
+                <button onclick="copyToClipboard('ayushhardeniya@oksbi')">ayushhardeniya@oksbi</button>
+                <button onclick="copyToClipboard('ayushhardeniya@okaxis')">ayushhardeniya@okaxis</button>
+                <button onclick="copyToClipboard('ayushhardeniya@okicici')">ayushhardeniya@okicici</button>
+                <button onclick="copyToClipboard('ayushhardeniya@okhdfcbank')">ayushhardeniya@okhdfcbank</button>
+                <button onclick="copyToClipboard('ayushhardeniya@axl')">ayushhardeniya@axl</button>
+                <button onclick="copyToClipboard('ayushhardeniya@ybl')">ayushhardeniya@ybl</button>
+                <button onclick="copyToClipboard('ayushhardeniya@ibl')">ayushhardeniya@ibl</button>
+            </div>
+        </section>
+
+        <section class="qr-code-payment">
+            <h2>QR Code Payment</h2>
+            <img src="GooglePayQR.png" alt="QR Code" class="qr-code">
+        </section>
+
+        <section class="bank-transfer">
+            <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
+            <p>Account Holder's Name: Ayush Sharma</p>
+            <p>Bank Name: State Bank of India</p>
+            <p>Account Number: 43246814954</p>
+            <p>IFSC Code: SBIN0002387</p>
+            <p>Branch/Code: KHAIR (2387)</p>
+        </section>
+    </div>
+
+    <div class="footer-illusion">
+        <p>© COPYRIGHT Reserved 2025 <span class="highlight">ayushHardeniya</span ⬤
