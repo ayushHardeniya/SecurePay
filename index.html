@@ -9,101 +9,103 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+    body, html {
       font-family: Arial, sans-serif;
-      transition: 0.3s ease-in-out;
-    }
-    body {
-      background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+      background-color: #f4f4f4;
       color: #333;
+      transition: background 0.3s ease-in-out;
     }
-    .dark-mode {
-      background: linear-gradient(to bottom, #222, #444);
-      color: #fff;
+    .header {
+      width: 100%;
+      background: url('PayHeader.PNG') no-repeat center;
+      background-size: cover;
+      height: 200px;
+      position: relative;
+    }
+    .logo {
+      position: fixed;
+      top: -100px;
+      left: 20px;
+      width: 80px;
+      height: auto;
+      transition: top 0.3s ease-in-out;
+    }
+    .show-logo {
+      top: 20px;
     }
     .container {
       max-width: 800px;
       margin: 20px auto;
-      background: white;
+      background: #fff;
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .dark-mode .container {
-      background: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     h1 {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     .description {
       text-align: center;
       font-size: 16px;
       margin-bottom: 20px;
-      color: #666;
+      color: #555;
     }
     .tabs {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       background: #ddd;
+      padding: 10px;
       border-radius: 8px;
-      overflow: hidden;
       margin-bottom: 20px;
     }
     .tab {
-      flex: 1;
-      text-align: center;
-      padding: 12px;
       cursor: pointer;
+      padding: 10px 15px;
       font-weight: bold;
-      transition: 0.3s;
+      border-radius: 4px;
     }
     .tab.active {
       background: #28a745;
-      color: #fff;
-    }
-    .tab:hover {
-      background: #218838;
       color: white;
     }
-    .section {
+    .content {
       display: none;
     }
-    .section.active {
+    .content.active {
       display: block;
     }
     .button {
       display: inline-block;
       background: #28a745;
-      color: white;
+      color: #fff;
       text-decoration: none;
-      padding: 12px 20px;
+      padding: 10px 20px;
       border-radius: 4px;
       font-size: 18px;
       font-weight: bold;
-      margin: 10px 0;
-      transition: 0.3s;
+      margin-bottom: 15px;
     }
     .button:hover {
       background: #218838;
     }
-    .upi-list {
+    ul {
       list-style: none;
-      padding: 0;
+      padding-left: 0;
+      margin-bottom: 20px;
     }
-    .upi-list li {
+    li {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      background: #f8f9fa;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
+      border-bottom: 1px solid #eee;
+      padding: 6px 0;
     }
     .copy-btn {
       background: #007bff;
       border: none;
-      color: white;
-      padding: 6px 12px;
+      color: #fff;
+      padding: 5px 10px;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -112,7 +114,7 @@
     }
     .qr-section {
       text-align: center;
-      margin: 20px 0;
+      margin: 40px 0;
     }
     .qr-section img {
       max-width: 250px;
@@ -120,104 +122,106 @@
       border-radius: 4px;
       padding: 5px;
     }
-    .qr-section .download-btn {
+    .download-btn {
       display: block;
-      margin-top: 10px;
+      margin: 10px auto;
+      padding: 8px 15px;
       background: #007bff;
       color: white;
-      padding: 8px 15px;
-      border-radius: 4px;
       text-decoration: none;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .download-btn:hover {
+      background: #0056b3;
     }
     .footer {
       text-align: center;
-      background: #222;
-      color: white;
-      padding: 20px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-    .dark-mode-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 6px 12px;
       background: #333;
       color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      border-radius: 4px;
+      padding: 15px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
     }
-    .dark-mode .dark-mode-toggle {
-      background: #fff;
-      color: #333;
+    .dark-mode {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: black;
+      color: white;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
     }
   </style>
+  <script>
+    function copyToClipboard(elementId) {
+      var text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        alert('Copied: ' + text);
+      });
+    }
+    window.addEventListener('scroll', function() {
+      var logo = document.querySelector('.logo');
+      if (window.scrollY > 180) {
+        logo.classList.add('show-logo');
+      } else {
+        logo.classList.remove('show-logo');
+      }
+    });
+    function switchTab(tabName) {
+      document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      document.body.style.background = document.body.classList.contains('dark') ? '#222' : '#f4f4f4';
+      document.body.style.color = document.body.classList.contains('dark') ? '#fff' : '#333';
+    }
+  </script>
 </head>
 <body>
-  <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+  <div class="header"></div>
+  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
+  <button class="dark-mode" onclick="toggleDarkMode()">🌙</button>
 
   <div class="container">
     <h1>SecurePay - Ayush Hardeniya</h1>
-    <p class="description">Easily make payments through UPI, QR Code, or Bank Transfer. Choose your preferred method below.</p>
-
+    <p class="description">Select your preferred method of payment below:</p>
+    
     <div class="tabs">
-      <div class="tab active" onclick="switchTab(0)">UPI Payment</div>
-      <div class="tab" onclick="switchTab(1)">QR Code Payment</div>
-      <div class="tab" onclick="switchTab(2)">Bank Transfer</div>
+      <span class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</span>
+      <span class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code Payment</span>
+      <span class="tab" data-tab="bank" onclick="switchTab('bank')">Bank Transfer</span>
     </div>
 
-    <div class="section active">
+    <div id="upi" class="content active">
       <h2>UPI Payment</h2>
-      <p>Send money directly using UPI IDs below. Click to copy any ID and use it in your payment app.</p>
-      <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=AyushHardeniya&cu=INR" class="button">Pay via UPI</a>
-      <ul class="upi-list">
+      <a href="#" class="button">Pay via UPI</a>
+      <ul>
         <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
         <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
         <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
-        <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
-        <li><span id="upi5">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
-        <li><span id="upi6">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
-        <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
       </ul>
     </div>
 
-    <div class="section">
+    <div id="qr" class="content">
       <h2>QR Code Payment</h2>
-      <p>Scan the QR code below using any UPI app to make a quick payment.</p>
       <div class="qr-section">
         <img src="GooglePayQR.png" alt="UPI QR Code">
         <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
       </div>
     </div>
 
-    <div class="section">
-      <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-      <p>Use the details below to make a direct bank transfer.</p>
-      <p><strong>Account Holder:</strong> Ayush Hardeniya</p>
-      <p><strong>Bank:</strong> State Bank of India</p>
-      <p><strong>Account Number:</strong> 123456789012</p>
-      <p><strong>IFSC Code:</strong> SBIN0000001</p>
+    <div id="bank" class="content">
+      <h2>Bank Transfer</h2>
+      <p><strong>Account Number:</strong> 43246814954</p>
     </div>
   </div>
 
   <div class="footer">COPYRIGHT © 2025 Ayush Hardeniya</div>
-
-  <script>
-    function copyToClipboard(id) {
-      var text = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(text);
-      alert("Copied: " + text);
-    }
-    function switchTab(index) {
-      document.querySelectorAll(".section").forEach((s, i) => s.classList.toggle("active", i === index));
-      document.querySelectorAll(".tab").forEach((t, i) => t.classList.toggle("active", i === index));
-    }
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-  </script>
 </body>
 </html>
