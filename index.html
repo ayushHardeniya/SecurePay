@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,17 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      transition: 0.3s ease-in-out;
     }
-    body, html {
+    body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background: linear-gradient(to bottom, #f4f4f4, #ddd);
       color: #333;
+      transition: background 0.3s ease-in-out;
+    }
+    .dark-mode {
+      background: linear-gradient(to bottom, #222, #444);
+      color: #fff;
     }
     .header {
       width: 100%;
@@ -27,7 +34,6 @@
       top: -100px;
       left: 20px;
       width: 80px;
-      height: auto;
       transition: top 0.3s ease-in-out;
     }
     .show-logo {
@@ -36,10 +42,15 @@
     .container {
       max-width: 800px;
       margin: 20px auto;
-      background: #fff;
+      background: white;
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background 0.3s ease-in-out;
+    }
+    .dark-mode .container {
+      background: #333;
+      box-shadow: 0 4px 10px rgba(255,255,255,0.1);
     }
     h1 {
       text-align: center;
@@ -49,7 +60,6 @@
       text-align: center;
       font-size: 16px;
       margin-bottom: 20px;
-      color: #555;
     }
     .tabs {
       display: flex;
@@ -64,13 +74,16 @@
       text-align: center;
       padding: 12px;
       cursor: pointer;
-      background: #f4f4f4;
-      transition: 0.3s;
       font-weight: bold;
+      transition: 0.3s;
     }
     .tab.active {
       background: #28a745;
       color: #fff;
+    }
+    .tab:hover {
+      background: #218838;
+      color: white;
     }
     .section {
       display: none;
@@ -81,13 +94,14 @@
     .button {
       display: inline-block;
       background: #28a745;
-      color: #fff;
+      color: white;
       text-decoration: none;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border-radius: 4px;
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin: 10px 0;
+      transition: 0.3s;
     }
     .button:hover {
       background: #218838;
@@ -95,8 +109,8 @@
     .copy-btn {
       background: #007bff;
       border: none;
-      color: #fff;
-      padding: 5px 10px;
+      color: white;
+      padding: 6px 12px;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -127,14 +141,15 @@
       background: #222;
       color: white;
       padding: 20px;
-      margin-top: 40px;
+      position: fixed;
+      bottom: 0;
       width: 100%;
     }
     .dark-mode-toggle {
       position: fixed;
       top: 10px;
       right: 10px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       background: #333;
       color: white;
       border: none;
@@ -142,41 +157,11 @@
       font-size: 14px;
       border-radius: 4px;
     }
+    .dark-mode .dark-mode-toggle {
+      background: #fff;
+      color: #333;
+    }
   </style>
-  <script>
-    function copyToClipboard(elementId) {
-      var text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(function() {
-        alert('Copied: ' + text);
-      });
-    }
-
-    function switchTab(tabIndex) {
-      var sections = document.querySelectorAll(".section");
-      var tabs = document.querySelectorAll(".tab");
-
-      sections.forEach((section, index) => {
-        section.classList.toggle("active", index === tabIndex);
-      });
-
-      tabs.forEach((tab, index) => {
-        tab.classList.toggle("active", index === tabIndex);
-      });
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-
-    window.addEventListener('scroll', function() {
-      var logo = document.querySelector('.logo');
-      if (window.scrollY > 180) {
-        logo.classList.add('show-logo');
-      } else {
-        logo.classList.remove('show-logo');
-      }
-    });
-  </script>
 </head>
 <body>
   <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
@@ -185,7 +170,7 @@
 
   <div class="container">
     <h1>SecurePay - Ayush Hardeniya</h1>
-    <p class="description">Select a payment method to proceed.</p>
+    <p class="description">Select a payment method to proceed securely.</p>
 
     <div class="tabs">
       <div class="tab active" onclick="switchTab(0)">UPI Payment</div>
@@ -217,11 +202,26 @@
 
     <div class="section">
       <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-      <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
-      <p><strong>Bank Name:</strong> State Bank of India</p>
+      <p><strong>Account Holder:</strong> Ayush Sharma</p>
+      <p><strong>Bank:</strong> State Bank of India</p>
     </div>
   </div>
 
   <div class="footer">COPYRIGHT © 2025 Ayush Hardeniya</div>
+
+  <script>
+    function copyToClipboard(id) {
+      var text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+      alert("Copied: " + text);
+    }
+    function switchTab(index) {
+      document.querySelectorAll(".section").forEach((s, i) => s.classList.toggle("active", i === index));
+      document.querySelectorAll(".tab").forEach((t, i) => t.classList.toggle("active", i === index));
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
 </body>
 </html>
