@@ -5,171 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SecurePay - Ayush Hardeniya</title>
   <style>
+    /* General Styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
-    body, html {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
+    body {
+      background: linear-gradient(135deg, #1e1e1e, #333);
+      color: white;
+      text-align: center;
       transition: background 0.3s ease-in-out;
-    }
-    .header {
-      width: 100%;
-      background: url('PayHeader.PNG') no-repeat center;
-      background-size: cover;
-      height: 200px;
-      position: relative;
-    }
-    .logo {
-      position: fixed;
-      top: -100px;
-      left: 20px;
-      width: 80px;
-      height: auto;
-      transition: top 0.3s ease-in-out;
-    }
-    .show-logo {
-      top: 20px;
     }
     .container {
       max-width: 800px;
-      margin: 20px auto;
-      background: #fff;
+      margin: 50px auto;
       padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      animation: fadeIn 1s ease-in-out;
     }
     h1 {
-      text-align: center;
+      font-size: 28px;
       margin-bottom: 20px;
     }
     .description {
-      text-align: center;
-      font-size: 16px;
+      font-size: 18px;
+      color: #ddd;
       margin-bottom: 20px;
-      color: #555;
     }
+
+    /* Tabs */
     .tabs {
       display: flex;
-      justify-content: space-around;
-      background: #ddd;
-      padding: 10px;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 8px;
+      padding: 10px;
       margin-bottom: 20px;
     }
     .tab {
+      flex: 1;
+      padding: 10px;
       cursor: pointer;
-      padding: 10px 15px;
       font-weight: bold;
-      border-radius: 4px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      transition: all 0.3s;
     }
     .tab.active {
-      background: #28a745;
-      color: white;
+      background: #00ff99;
+      color: black;
+      box-shadow: 0 0 15px #00ff99;
     }
+
+    /* Content */
     .content {
       display: none;
+      animation: fadeIn 0.5s ease-in-out;
     }
     .content.active {
       display: block;
     }
+
+    /* Buttons */
     .button {
       display: inline-block;
-      background: #28a745;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 4px;
+      background: #00ff99;
+      color: black;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0 10px #00ff99;
     }
     .button:hover {
-      background: #218838;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ff99;
     }
+
+    /* UPI List */
     ul {
       list-style: none;
-      padding-left: 0;
-      margin-bottom: 20px;
+      padding: 0;
     }
     li {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 6px 0;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 5px;
+      margin: 5px 0;
     }
     .copy-btn {
       background: #007bff;
       border: none;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 4px;
+      padding: 8px;
+      border-radius: 5px;
       cursor: pointer;
+      color: white;
+      transition: 0.3s;
     }
     .copy-btn:hover {
       background: #0056b3;
     }
-    .qr-section {
-      text-align: center;
-      margin: 40px 0;
-    }
+
+    /* QR Section */
     .qr-section img {
-      max-width: 250px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
-      padding: 5px;
+      width: 200px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
     .download-btn {
       display: block;
-      margin: 10px auto;
-      padding: 8px 15px;
       background: #007bff;
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 5px;
       color: white;
       text-decoration: none;
-      border-radius: 4px;
-      text-align: center;
+      transition: 0.3s;
     }
     .download-btn:hover {
       background: #0056b3;
     }
+
+    /* Footer */
     .footer {
       text-align: center;
-      background: #333;
-      color: white;
-      padding: 15px;
+      padding: 20px;
       position: fixed;
-      width: 100%;
       bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
     }
-    .dark-mode {
+
+    /* Dark Mode */
+    .dark-mode-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
       background: black;
       color: white;
       padding: 8px;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
     }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
+
   <script>
     function copyToClipboard(elementId) {
       var text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(function() {
-        alert('Copied: ' + text);
-      });
+      navigator.clipboard.writeText(text);
+      alert('Copied: ' + text);
     }
-    window.addEventListener('scroll', function() {
-      var logo = document.querySelector('.logo');
-      if (window.scrollY > 180) {
-        logo.classList.add('show-logo');
-      } else {
-        logo.classList.remove('show-logo');
-      }
-    });
     function switchTab(tabName) {
       document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
       document.getElementById(tabName).classList.add('active');
@@ -177,45 +178,44 @@
       document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
     }
     function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-      document.body.style.background = document.body.classList.contains('dark') ? '#222' : '#f4f4f4';
-      document.body.style.color = document.body.classList.contains('dark') ? '#fff' : '#333';
+      document.body.classList.toggle('dark-mode');
     }
   </script>
 </head>
 <body>
-  <div class="header"></div>
-  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
-  <button class="dark-mode" onclick="toggleDarkMode()">🌙</button>
+
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
   <div class="container">
     <h1>SecurePay - Ayush Hardeniya</h1>
-    <p class="description">Select your preferred method of payment below:</p>
-    
+    <p class="description">Choose your preferred payment method:</p>
+
     <div class="tabs">
-      <span class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI Payment</span>
-      <span class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code Payment</span>
-      <span class="tab" data-tab="bank" onclick="switchTab('bank')">Bank Transfer</span>
+      <span class="tab active" data-tab="upi" onclick="switchTab('upi')">UPI</span>
+      <span class="tab" data-tab="qr" onclick="switchTab('qr')">QR Code</span>
+      <span class="tab" data-tab="bank" onclick="switchTab('bank')">Bank</span>
     </div>
 
+    <!-- UPI -->
     <div id="upi" class="content active">
       <h2>UPI Payment</h2>
       <a href="#" class="button">Pay via UPI</a>
       <ul>
         <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
         <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
-        <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
       </ul>
     </div>
 
+    <!-- QR Code -->
     <div id="qr" class="content">
       <h2>QR Code Payment</h2>
       <div class="qr-section">
-        <img src="GooglePayQR.png" alt="UPI QR Code">
-        <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
+        <img src="GooglePayQR.png" alt="UPI QR">
+        <a href="GooglePayQR.png" download class="download-btn">Download QR</a>
       </div>
     </div>
 
+    <!-- Bank Transfer -->
     <div id="bank" class="content">
       <h2>Bank Transfer</h2>
       <p><strong>Account Number:</strong> 43246814954</p>
@@ -223,5 +223,6 @@
   </div>
 
   <div class="footer">COPYRIGHT © 2025 Ayush Hardeniya</div>
+
 </body>
 </html>
