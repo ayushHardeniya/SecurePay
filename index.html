@@ -45,10 +45,39 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    h2 {
-      color: #222;
-      margin: 20px 0 10px;
-      text-align: left;
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      text-align: center;
+      flex: 1;
+      text-transform: uppercase;
+    }
+    .tab:hover, .tab.active {
+      background: #0056b3;
+    }
+    .section {
+      display: none;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 6px;
+      margin-top: 10px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .button {
       display: inline-block;
@@ -110,6 +139,13 @@
         alert('Copied: ' + text);
       });
     }
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`[data-target="${id}"]`).classList.add('active');
+    }
     window.addEventListener('scroll', function() {
       var logo = document.querySelector('.logo');
       if (window.scrollY > 180) {
@@ -123,31 +159,47 @@
 <body>
   <div class="header"></div>
   <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
-  
+
   <div class="container">
     <h1>SecurePay - ayushHardeniya</h1>
-    <h2>UPI Payment</h2>
-    <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
-    <ul>
-      <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
-      <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
-      <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
-      <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
-      <li><span id="upi5">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
-      <li><span id="upi6">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
-      <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
-    </ul>
-    <h2>QR Code Payment</h2>
-    <div class="qr-section">
-      <img src="GooglePayQR.png" alt="UPI QR Code">
+
+    <div class="tabs">
+      <div class="tab active" data-target="upi-section" onclick="showSection('upi-section')">UPI Payment</div>
+      <div class="tab" data-target="qr-section" onclick="showSection('qr-section')">QR Code Payment</div>
+      <div class="tab" data-target="bank-section" onclick="showSection('bank-section')">Bank Transfer</div>
     </div>
-    <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-    <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
-    <p><strong>Bank Name:</strong> State Bank of India</p>
-    <p><strong>Account Number:</strong> 43246814954</p>
-    <p><strong>IFSC Code:</strong> SBIN0002387</p>
-    <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
+
+    <div id="upi-section" class="section active">
+      <h2>UPI Payment</h2>
+      <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
+      <ul>
+        <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
+        <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
+        <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
+        <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
+        <li><span id="upi5">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
+        <li><span id="upi6">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
+        <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
+      </ul>
+    </div>
+
+    <div id="qr-section" class="section">
+      <h2>QR Code Payment</h2>
+      <div class="qr-section">
+        <img src="GooglePayQR.png" alt="UPI QR Code">
+      </div>
+    </div>
+
+    <div id="bank-section" class="section">
+      <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
+      <p><strong>Account Holder's Name:</strong> Ayush Sharma</p>
+      <p><strong>Bank Name:</strong> State Bank of India</p>
+      <p><strong>Account Number:</strong> 43246814954</p>
+      <p><strong>IFSC Code:</strong> SBIN0002387</p>
+      <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
+    </div>
   </div>
+
   <div class="footer">COPYRIGHT © 2025 ayushHardeniya</div>
 </body>
 </html>
