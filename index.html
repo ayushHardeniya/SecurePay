@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,34 +9,16 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: Arial, sans-serif;
       transition: 0.3s ease-in-out;
     }
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #f4f4f4, #ddd);
+      background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
       color: #333;
-      transition: background 0.3s ease-in-out;
     }
     .dark-mode {
       background: linear-gradient(to bottom, #222, #444);
       color: #fff;
-    }
-    .header {
-      width: 100%;
-      background: url('PayHeader.PNG') no-repeat center;
-      background-size: cover;
-      height: 200px;
-      position: relative;
-    }
-    .logo {
-      position: fixed;
-      top: -100px;
-      left: 20px;
-      width: 80px;
-      transition: top 0.3s ease-in-out;
-    }
-    .show-logo {
-      top: 20px;
     }
     .container {
       max-width: 800px;
@@ -46,20 +27,19 @@
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: background 0.3s ease-in-out;
     }
     .dark-mode .container {
       background: #333;
-      box-shadow: 0 4px 10px rgba(255,255,255,0.1);
     }
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .description {
       text-align: center;
       font-size: 16px;
       margin-bottom: 20px;
+      color: #666;
     }
     .tabs {
       display: flex;
@@ -105,6 +85,19 @@
     }
     .button:hover {
       background: #218838;
+    }
+    .upi-list {
+      list-style: none;
+      padding: 0;
+    }
+    .upi-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f9fa;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
     }
     .copy-btn {
       background: #007bff;
@@ -165,12 +158,10 @@
 </head>
 <body>
   <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
-  <div class="header"></div>
-  <img src="profilePic.jpg" alt="Ayush Hardeniya Logo" class="logo">
 
   <div class="container">
     <h1>SecurePay - Ayush Hardeniya</h1>
-    <p class="description">Select a payment method to proceed securely.</p>
+    <p class="description">Easily make payments through UPI, QR Code, or Bank Transfer. Choose your preferred method below.</p>
 
     <div class="tabs">
       <div class="tab active" onclick="switchTab(0)">UPI Payment</div>
@@ -180,8 +171,9 @@
 
     <div class="section active">
       <h2>UPI Payment</h2>
+      <p>Send money directly using UPI IDs below. Click to copy any ID and use it in your payment app.</p>
       <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=AyushHardeniya&cu=INR" class="button">Pay via UPI</a>
-      <ul>
+      <ul class="upi-list">
         <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
         <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
         <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
@@ -194,6 +186,7 @@
 
     <div class="section">
       <h2>QR Code Payment</h2>
+      <p>Scan the QR code below using any UPI app to make a quick payment.</p>
       <div class="qr-section">
         <img src="GooglePayQR.png" alt="UPI QR Code">
         <a href="GooglePayQR.png" download class="download-btn">Download QR Code</a>
@@ -202,8 +195,11 @@
 
     <div class="section">
       <h2>Bank Transfer (NEFT/IMPS/RTGS)</h2>
-      <p><strong>Account Holder:</strong> Ayush Sharma</p>
+      <p>Use the details below to make a direct bank transfer.</p>
+      <p><strong>Account Holder:</strong> Ayush Hardeniya</p>
       <p><strong>Bank:</strong> State Bank of India</p>
+      <p><strong>Account Number:</strong> 123456789012</p>
+      <p><strong>IFSC Code:</strong> SBIN0000001</p>
     </div>
   </div>
 
