@@ -14,20 +14,23 @@
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
     }
     .header {
       width: 100%;
       background: url('PayHeader.PNG') no-repeat center;
       background-size: cover;
       height: 200px;
-      position: relative;
     }
     .logo {
       position: fixed;
       top: -100px;
       left: 20px;
       width: 80px;
-      height: auto;
       transition: top 0.3s ease-in-out;
     }
     .show-logo {
@@ -41,9 +44,8 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
+    .dark-mode .container {
+      background: #333;
     }
     .tabs {
       display: flex;
@@ -51,35 +53,23 @@
       margin-bottom: 20px;
     }
     .tab {
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
       cursor: pointer;
-      border-radius: 4px;
-      font-size: 16px;
-      text-align: center;
-      flex: 1;
-      text-transform: uppercase;
+      padding: 10px 20px;
+      background: #ddd;
+      border-radius: 5px;
+      font-weight: bold;
     }
-    .tab:hover, .tab.active {
-      background: #0056b3;
+    .active-tab {
+      background: #28a745;
+      color: #fff;
     }
     .section {
       display: none;
-      padding: 20px;
-      background: #f9f9f9;
-      border-radius: 6px;
-      margin-top: 10px;
-      animation: fadeIn 0.5s ease-in-out;
     }
-    .section.active {
+    .show-section {
       display: block;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .button {
+    .button, .dark-mode-btn, .download-btn {
       display: inline-block;
       background: #28a745;
       color: #fff;
@@ -88,15 +78,23 @@
       border-radius: 4px;
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 15px;
+      cursor: pointer;
     }
-    .button:hover {
-      background: #218838;
+    .dark-mode-btn {
+      background: #007bff;
+      margin: 10px 0;
+    }
+    .download-btn {
+      background: #ff9800;
+      display: block;
+      margin: 10px auto;
+    }
+    .button:hover, .dark-mode-btn:hover, .download-btn:hover {
+      opacity: 0.8;
     }
     ul {
       list-style: none;
-      padding-left: 0;
-      margin-bottom: 20px;
+      padding: 0;
     }
     li {
       display: flex;
@@ -104,20 +102,18 @@
       border-bottom: 1px solid #eee;
       padding: 6px 0;
     }
-    .copy-btn {
-      background: #007bff;
-      border: none;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .copy-btn:hover {
-      background: #0056b3;
+    .tooltip {
+      position: absolute;
+      background: black;
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+      display: none;
     }
     .qr-section {
       text-align: center;
-      margin: 40px 0;
+      margin: 20px 0;
     }
     .qr-section img {
       max-width: 250px;
@@ -135,16 +131,28 @@
   <script>
     function copyToClipboard(elementId) {
       var text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(function() {
-        alert('Copied: ' + text);
-      });
+      navigator.clipboard.writeText(text);
+      var tooltip = document.getElementById("tooltip");
+      tooltip.innerText = "Copied!";
+      tooltip.style.display = "block";
+      setTimeout(() => tooltip.style.display = "none", 1500);
     }
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-      document.querySelector(`[data-target="${id}"]`).classList.add('active');
+    function toggleSection(sectionId) {
+      document.querySelectorAll(".section").forEach(sec => sec.classList.remove("show-section"));
+      document.getElementById(sectionId).classList.add("show-section");
+      document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active-tab"));
+      document.querySelector(`[data-section="${sectionId}"]`).classList.add("active-tab");
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+    function downloadQR() {
+      let link = document.createElement("a");
+      link.href = "GooglePayQR.png";
+      link.download = "UPI_QR_Code.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
     window.addEventListener('scroll', function() {
       var logo = document.querySelector('.logo');
@@ -162,24 +170,20 @@
 
   <div class="container">
     <h1>SecurePay - ayushHardeniya</h1>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <div class="tabs">
-      <div class="tab active" data-target="upi-section" onclick="showSection('upi-section')">UPI Payment</div>
-      <div class="tab" data-target="qr-section" onclick="showSection('qr-section')">QR Code Payment</div>
-      <div class="tab" data-target="bank-section" onclick="showSection('bank-section')">Bank Transfer</div>
+      <div class="tab active-tab" data-section="upi-section" onclick="toggleSection('upi-section')">UPI Payment</div>
+      <div class="tab" data-section="qr-section" onclick="toggleSection('qr-section')">QR Code Payment</div>
+      <div class="tab" data-section="bank-section" onclick="toggleSection('bank-section')">Bank Transfer</div>
     </div>
 
-    <div id="upi-section" class="section active">
+    <div id="upi-section" class="section show-section">
       <h2>UPI Payment</h2>
       <a href="upi://pay?pa=ayushhardeniya@oksbi&pn=ayushHardeniya&cu=INR" class="button">Pay via UPI</a>
       <ul>
         <li><span id="upi1">ayushhardeniya@oksbi</span> <button class="copy-btn" onclick="copyToClipboard('upi1')">Copy</button></li>
         <li><span id="upi2">ayushhardeniya@okaxis</span> <button class="copy-btn" onclick="copyToClipboard('upi2')">Copy</button></li>
-        <li><span id="upi3">ayushhardeniya@okicici</span> <button class="copy-btn" onclick="copyToClipboard('upi3')">Copy</button></li>
-        <li><span id="upi4">ayushhardeniya@okhdfcbank</span> <button class="copy-btn" onclick="copyToClipboard('upi4')">Copy</button></li>
-        <li><span id="upi5">ayushhardeniya@axl</span> <button class="copy-btn" onclick="copyToClipboard('upi5')">Copy</button></li>
-        <li><span id="upi6">ayushhardeniya@ybl</span> <button class="copy-btn" onclick="copyToClipboard('upi6')">Copy</button></li>
-        <li><span id="upi7">ayushhardeniya@ibl</span> <button class="copy-btn" onclick="copyToClipboard('upi7')">Copy</button></li>
       </ul>
     </div>
 
@@ -187,6 +191,7 @@
       <h2>QR Code Payment</h2>
       <div class="qr-section">
         <img src="GooglePayQR.png" alt="UPI QR Code">
+        <button class="download-btn" onclick="downloadQR()">Download QR Code</button>
       </div>
     </div>
 
@@ -196,10 +201,10 @@
       <p><strong>Bank Name:</strong> State Bank of India</p>
       <p><strong>Account Number:</strong> 43246814954</p>
       <p><strong>IFSC Code:</strong> SBIN0002387</p>
-      <p><strong>Branch/Code:</strong> KHAIR (2387)</p>
     </div>
   </div>
 
   <div class="footer">COPYRIGHT © 2025 ayushHardeniya</div>
+  <div id="tooltip" class="tooltip"></div>
 </body>
 </html>
