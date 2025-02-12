@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - NexPay</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - NexPay</title>
+<style>
+  body { background: #1a1a1a; color: #f0f0f0; font-family: 'Poppins', sans-serif; padding: 20px; }
+  .container { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; }
+  h1 { color: #00ff99; }
+  p { font-size: 16px; margin-bottom: 15px; }
+  a { color: #00ff99; text-decoration: none; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; padding: 10px; margin: 10px 0; background: #333; border: none; color: #f0f0f0;
+  }
+  .contact-form button {
+    background: #00ff99; border: none; padding: 10px 15px; color: black; cursor: pointer;
+  }
+</style>
 </head>
 <body>
-    <h2>Contact Us</h2>
-    <p>For any queries, email us at: <a href="mailto:ayushhardeniya.vn@outlook.in">ayushhardeniya.vn@outlook.in</a></p>
+<div class="container">
+  <h1>Contact Us</h1>
+  <p>Have any issues or inquiries? Reach out to us.</p>
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</div>
 </body>
 </html>
