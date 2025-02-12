@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.header-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.floating-logo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.container {
+    padding: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+}
+
+.tab-link {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: #007bff;
+    color: white;
+    margin: 0 5px;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.active {
+    display: block;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+}
+
+.upi-list, .bank-details {
+    list-style: none;
+    padding: 0;
+}
+
+.copy-text {
+    color: blue;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: #222;
+    color: white;
+}
