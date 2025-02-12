@@ -3,193 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page - ayushHardeniya</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f7fa;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Header */
-        .header {
-            background-color: #0056b3;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        /* Payment Section */
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        /* UPI Section */
-        .upi-section, .bank-section {
-            margin-top: 15px;
-            padding: 10px;
-            background: #eef2ff;
-            border-radius: 8px;
-        }
-
-        .upi-id {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            background: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 8px;
-            cursor: pointer;
-        }
-
-        .upi-id:hover {
-            background: #dbeafe;
-        }
-
-        .copy-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #007bff;
-            font-weight: bold;
-        }
-
-        /* Bank Transfer */
-        .bank-details {
-            text-align: left;
-            padding: 10px;
-        }
-
-        .bank-info {
-            color: #0056b3;
-            cursor: pointer;
-        }
-
-        .bank-info:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1d3557;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 50px;
-        }
-
-        .footer a {
-            color: #ffcc00;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Copy Notification */
-        .copy-alert {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: green;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
+    <title>NexPay - Powered by Ayush Hardeniya</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
-    <div class="header">Secure Payment Portal</div>
+    <!-- Header with Image -->
+    <header>
+        <img src="header-image.jpg" alt="NexPay Banner" class="header-img">
+        <h1>NexPay</h1>
+        <h2>Powered by Ayush Hardeniya</h2>
+    </header>
 
-    <div class="container">
-        <h2>Choose a Payment Method</h2>
-
-        <!-- UPI Section -->
-        <div class="upi-section">
-            <h3>UPI Payment</h3>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@oksbi')">
-                ayushhardeniya@oksbi
-                <button class="copy-btn">Copy</button>
-            </div>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@okaxis')">
-                ayushhardeniya@okaxis
-                <button class="copy-btn">Copy</button>
-            </div>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@okicici')">
-                ayushhardeniya@okicici
-                <button class="copy-btn">Copy</button>
-            </div>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@okhdfcbank')">
-                ayushhardeniya@okhdfcbank
-                <button class="copy-btn">Copy</button>
-            </div>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@ybl')">
-                ayushhardeniya@ybl
-                <button class="copy-btn">Copy</button>
-            </div>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@axl')">
-                ayushhardeniya@axl
-                <button class="copy-btn">Copy</button>
-            </div>
-            <div class="upi-id" onclick="copyToClipboard('ayushhardeniya@ibl')">
-                ayushhardeniya@ibl
-                <button class="copy-btn">Copy</button>
-            </div>
-        </div>
-
-        <!-- Bank Transfer Section -->
-        <div class="bank-section">
-            <h3>Bank Transfer</h3>
-            <div class="bank-details">
-                <p><strong>Account Holder:</strong> <span class="bank-info" onclick="copyToClipboard('Ayush Sharma')">Ayush Sharma</span></p>
-                <p><strong>Account Number:</strong> <span class="bank-info" onclick="copyToClipboard('123456789012')">123456789012</span></p>
-                <p><strong>IFSC Code:</strong> <span class="bank-info" onclick="copyToClipboard('SBIN0001234')">SBIN0001234</span></p>
-            </div>
-        </div>
-
-        <p><strong>Disclaimer:</strong> This is a personal payment page. Payments are processed securely via UPI and bank transfer. No card details are stored.</p>
+    <!-- Floating Logo -->
+    <div class="floating-logo">
+        <img src="logo.png" alt="NexPay Logo">
     </div>
 
-    <!-- Copy Alert -->
-    <div id="copy-alert" class="copy-alert">Copied to clipboard!</div>
+    <!-- Description -->
+    <section class="description">
+        <p>Select your preferred payment method and proceed securely.</p>
+    </section>
+
+    <!-- 3D Tabs for Navigation -->
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('upi')">UPI Payment</button>
+        <button class="tab" onclick="showTab('bank')">Bank Transfer</button>
+    </div>
+
+    <!-- UPI Section -->
+    <section id="upi" class="content">
+        <h3>UPI Payment</h3>
+        <p>Scan the QR Code or copy any of the UPI IDs below:</p>
+        <img src="qr-code.png" alt="UPI QR Code" class="qr-code">
+        <button onclick="downloadQR()">Download QR</button>
+
+        <!-- UPI ID List -->
+        <div class="upi-list">
+            <div class="upi-item">
+                <span>ayushhardeniya@oksbi</span> <button onclick="copyText('ayushhardeniya@oksbi')">Copy</button>
+            </div>
+            <div class="upi-item">
+                <span>ayushhardeniya@okaxis</span> <button onclick="copyText('ayushhardeniya@okaxis')">Copy</button>
+            </div>
+            <div class="upi-item">
+                <span>ayushhardeniya@okicici</span> <button onclick="copyText('ayushhardeniya@okicici')">Copy</button>
+            </div>
+            <div class="upi-item">
+                <span>ayushhardeniya@okhdfcbank</span> <button onclick="copyText('ayushhardeniya@okhdfcbank')">Copy</button>
+            </div>
+            <div class="upi-item">
+                <span>ayushhardeniya@ybl</span> <button onclick="copyText('ayushhardeniya@ybl')">Copy</button>
+            </div>
+            <div class="upi-item">
+                <span>ayushhardeniya@axl</span> <button onclick="copyText('ayushhardeniya@axl')">Copy</button>
+            </div>
+            <div class="upi-item">
+                <span>ayushhardeniya@ibl</span> <button onclick="copyText('ayushhardeniya@ibl')">Copy</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bank Transfer Section -->
+    <section id="bank" class="content hidden">
+        <h3>Bank Transfer</h3>
+        <p>Use the following details to transfer directly:</p>
+        <div class="bank-details">
+            <span onclick="copyText('Ayush Sharma')" class="copyable">Name: Ayush Sharma</span>
+            <span onclick="copyText('1234567890')" class="copyable">Account Number: 1234567890</span>
+            <span onclick="copyText('SBI0001234')" class="copyable">IFSC: SBI0001234</span>
+            <span onclick="copyText('State Bank of India')" class="copyable">Bank: State Bank of India</span>
+            <span onclick="copyText('Bhopal Branch')" class="copyable">Branch: Bhopal Branch</span>
+        </div>
+    </section>
+
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle">🌙</button>
 
     <!-- Footer -->
-    <div class="footer">
-        <p>Powered by Ayush Hardeniya</p>
-        <p>
-            <a href="#">Terms & Conditions</a> | 
-            <a href="#">Contact Us</a>
-        </p>
-    </div>
+    <footer>
+        <p>© 2025 NexPay. All Rights Reserved.</p>
+        <a href="terms.html">Terms & Conditions</a> | <a href="contact.html">Contact Us</a>
+    </footer>
 
     <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                let alertBox = document.getElementById("copy-alert");
-                alertBox.style.display = "block";
-                setTimeout(() => { alertBox.style.display = "none"; }, 2000);
-            });
+        // Copy Function
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("Copied: " + text);
+        }
+
+        // Tab Switching
+        function showTab(tab) {
+            document.querySelectorAll(".content").forEach(el => el.classList.add("hidden"));
+            document.getElementById(tab).classList.remove("hidden");
+
+            document.querySelectorAll(".tab").forEach(el => el.classList.remove("active"));
+            document.querySelector(`[onclick="showTab('${tab}')"]`).classList.add("active");
+        }
+
+        // Dark Mode Toggle
+        document.getElementById("dark-mode-toggle").addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // QR Code Download
+        function downloadQR() {
+            const link = document.createElement("a");
+            link.href = "qr-code.png";
+            link.download = "NexPay_QR.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
+
+    <style>
+        /* General Styles */
+        body { font-family: Arial, sans-serif; padding: 20px; transition: background 0.3s; }
+        h1, h2 { text-align: center; }
+        .hidden { display: none; }
+
+        /* Header Image */
+        .header-img { width: 100%; height: auto; }
+
+        /* Floating Logo */
+        .floating-logo { position: fixed; top: 20px; left: 20px; width: 50px; }
+
+        /* Tabs */
+        .tabs { display: flex; justify-content: center; }
+        .tab { padding: 10px; cursor: pointer; background: lightgray; margin: 5px; border-radius: 5px; }
+        .tab.active { background: steelblue; color: white; }
+
+        /* QR Code */
+        .qr-code { display: block; margin: 20px auto; width: 150px; }
+
+        /* UPI & Bank Transfer Section */
+        .upi-item, .bank-details span { display: flex; justify-content: space-between; padding: 10px; }
+        .copyable { color: blue; cursor: pointer; }
+
+        /* Dark Mode */
+        .dark-mode { background: black; color: white; }
+        #dark-mode-toggle { position: fixed; top: 10px; right: 10px; cursor: pointer; background: gray; padding: 5px; }
+
+        /* Footer */
+        footer { text-align: center; padding: 20px; background: #222; color: white; position: relative; bottom: 0; }
+        footer a { color: lightblue; margin: 0 10px; }
+    </style>
 
 </body>
 </html>
