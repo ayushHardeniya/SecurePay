@@ -26,10 +26,11 @@
       background-size: cover;
       position: relative;
     }
-     @keyframes fadeSlide {
+     
+    @keyframes fadeSlide {
         0% { 
             opacity: 0; 
-            transform: translateY(-50px); 
+            transform: translateY(-20px); 
         }
         100% { 
             opacity: 1; 
@@ -41,19 +42,20 @@
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        font-size: 3em; 
+        font-size: 2.5em; 
         color: white; 
-        text-shadow: 0 0 10px #00ff99, 0 0 20px #00cc77, 0 0 30px #00aa66;
-        animation: fadeSlide 1.5s ease-out; /* Smooth transition */
+        text-shadow: 0 0 5px #00ff99; /* Minimal glow effect */
+        animation: fadeSlide 1s ease-out;
     }
 
     .animated-title img {
-        width: 60px; 
-        height: 60px; 
-        margin-right: 15px; 
-        filter: drop-shadow(0 0 10px #00ff99);
-        animation: fadeSlide 1.5s ease-out;
+        width: 50px; 
+        height: 50px; 
+        margin-right: 12px; 
+        filter: drop-shadow(0 0 5px #00ff99); /* Soft shadow for a gentle glow */
+        animation: fadeSlide 1s ease-out;
     }
+    
     /* Floating Logo */
     .logo {
       position: fixed;
