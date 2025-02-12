@@ -3,23 +3,24 @@ function copyText(text) {
     alert("Copied: " + text);
 }
 
-function openTab(evt, tabName) {
-    let tabs = document.getElementsByClassName("tab-content");
-    for (let tab of tabs) {
-        tab.style.display = "none";
+function openTab(event, tabName) {
+    let contents = document.getElementsByClassName("tab-content");
+    for (let content of contents) {
+        content.style.display = "none";
     }
-    document.getElementById(tabName).style.display = "block";
+    
+    let buttons = document.getElementsByClassName("tab-button");
+    for (let button of buttons) {
+        button.classList.remove("active");
+    }
 
-    let tabLinks = document.getElementsByClassName("tab-link");
-    for (let link of tabLinks) {
-        link.classList.remove("active");
-    }
-    evt.currentTarget.classList.add("active");
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.classList.add("active");
 }
 
 function downloadQR() {
-    let link = document.createElement("a");
-    link.href = "qr-code.png";
-    link.download = "NexPay-QR.png";
+    let link = document.createElement('a');
+    link.href = 'GooglePayQR.png';
+    link.download = 'GooglePayQR.png';
     link.click();
 }
