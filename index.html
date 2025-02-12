@@ -26,6 +26,34 @@
       background-size: cover;
       position: relative;
     }
+     @keyframes fadeSlide {
+        0% { 
+            opacity: 0; 
+            transform: translateY(-50px); 
+        }
+        100% { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    .animated-title {
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 3em; 
+        color: white; 
+        text-shadow: 0 0 10px #00ff99, 0 0 20px #00cc77, 0 0 30px #00aa66;
+        animation: fadeSlide 1.5s ease-out; /* Smooth transition */
+    }
+
+    .animated-title img {
+        width: 60px; 
+        height: 60px; 
+        margin-right: 15px; 
+        filter: drop-shadow(0 0 10px #00ff99);
+        animation: fadeSlide 1.5s ease-out;
+    }
     /* Floating Logo */
     .logo {
       position: fixed;
@@ -250,16 +278,8 @@
   
   <!-- Main Container -->
   <div class="container">
-    <h1 style="
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 3em; 
-    color: #00ff99; 
-    text-shadow: 0 0 10px #00ff99, 0 0 20px #00cc77, 0 0 30px #00aa66;
-    ">|| 
-    <img src="image.png" alt="aHPay Logo" 
-         style="width: 60px; height: 60px; margin-right: 15px; filter: drop-shadow(0 0 10px #00ff99);">
+    <h1 class="animated-title">|| 
+    <img src="image.png" alt="aHPay Logo">
     <span>aHPay</span> ||
     </h1>
     <h2> Powered By ayushHardeniya</h2>
