@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexPay - Powered by Ayush Hardeniya</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
 
-    <!-- Header with Image -->
+    <!-- Header Section -->
     <header>
-        <img src="header-image.jpg" alt="NexPay Banner" class="header-img">
+        <img src="header-image.jpg" alt="NexPay Header" class="header-img">
         <h1>NexPay</h1>
-        <h2>Powered by Ayush Hardeniya</h2>
+        <h3>Powered by Ayush Hardeniya</h3>
     </header>
 
     <!-- Floating Logo -->
@@ -21,136 +21,53 @@
         <img src="logo.png" alt="NexPay Logo">
     </div>
 
-    <!-- Description -->
-    <section class="description">
-        <p>Select your preferred payment method and proceed securely.</p>
-    </section>
+    <!-- Payment Section -->
+    <div class="container">
+        <h2>Select Payment Method</h2>
 
-    <!-- 3D Tabs for Navigation -->
-    <div class="tabs">
-        <button class="tab active" onclick="showTab('upi')">UPI Payment</button>
-        <button class="tab" onclick="showTab('bank')">Bank Transfer</button>
+        <!-- 3D Tab Section -->
+        <div class="tabs">
+            <button class="tab-link active" onclick="openTab(event, 'UPI')">UPI Payment</button>
+            <button class="tab-link" onclick="openTab(event, 'Bank')">Bank Transfer</button>
+        </div>
+
+        <!-- UPI Payment Tab -->
+        <div id="UPI" class="tab-content active">
+            <h3>UPI Payment Options</h3>
+            <p>Scan the QR code or copy any UPI ID below.</p>
+            <img src="qr-code.png" alt="UPI QR Code" class="qr-code">
+            <button onclick="downloadQR()">Download QR Code</button>
+            
+            <ul class="upi-list">
+                <li><span>ayushhardeniya@oksbi</span> <button onclick="copyText('ayushhardeniya@oksbi')">Copy</button></li>
+                <li><span>ayushhardeniya@okaxis</span> <button onclick="copyText('ayushhardeniya@okaxis')">Copy</button></li>
+                <li><span>ayushhardeniya@okicici</span> <button onclick="copyText('ayushhardeniya@okicici')">Copy</button></li>
+                <li><span>ayushhardeniya@okhdfcbank</span> <button onclick="copyText('ayushhardeniya@okhdfcbank')">Copy</button></li>
+                <li><span>ayushhardeniya@ybl</span> <button onclick="copyText('ayushhardeniya@ybl')">Copy</button></li>
+                <li><span>ayushhardeniya@axl</span> <button onclick="copyText('ayushhardeniya@axl')">Copy</button></li>
+                <li><span>ayushhardeniya@ibl</span> <button onclick="copyText('ayushhardeniya@ibl')">Copy</button></li>
+            </ul>
+        </div>
+
+        <!-- Bank Transfer Tab -->
+        <div id="Bank" class="tab-content">
+            <h3>Bank Transfer Details</h3>
+            <p>Click on the details below to copy.</p>
+            <ul class="bank-details">
+                <li onclick="copyText('Ayush Sharma')">Name: <span class="copy-text">Ayush Sharma</span></li>
+                <li onclick="copyText('123456789012345')">Account No: <span class="copy-text">123456789012345</span></li>
+                <li onclick="copyText('SBI Bank')">Bank: <span class="copy-text">SBI Bank</span></li>
+                <li onclick="copyText('Bhopal Branch')">Branch: <span class="copy-text">Bhopal Branch</span></li>
+                <li onclick="copyText('SBIN0001234')">IFSC Code: <span class="copy-text">SBIN0001234</span></li>
+            </ul>
+        </div>
     </div>
-
-    <!-- UPI Section -->
-    <section id="upi" class="content">
-        <h3>UPI Payment</h3>
-        <p>Scan the QR Code or copy any of the UPI IDs below:</p>
-        <img src="qr-code.png" alt="UPI QR Code" class="qr-code">
-        <button onclick="downloadQR()">Download QR</button>
-
-        <!-- UPI ID List -->
-        <div class="upi-list">
-            <div class="upi-item">
-                <span>ayushhardeniya@oksbi</span> <button onclick="copyText('ayushhardeniya@oksbi')">Copy</button>
-            </div>
-            <div class="upi-item">
-                <span>ayushhardeniya@okaxis</span> <button onclick="copyText('ayushhardeniya@okaxis')">Copy</button>
-            </div>
-            <div class="upi-item">
-                <span>ayushhardeniya@okicici</span> <button onclick="copyText('ayushhardeniya@okicici')">Copy</button>
-            </div>
-            <div class="upi-item">
-                <span>ayushhardeniya@okhdfcbank</span> <button onclick="copyText('ayushhardeniya@okhdfcbank')">Copy</button>
-            </div>
-            <div class="upi-item">
-                <span>ayushhardeniya@ybl</span> <button onclick="copyText('ayushhardeniya@ybl')">Copy</button>
-            </div>
-            <div class="upi-item">
-                <span>ayushhardeniya@axl</span> <button onclick="copyText('ayushhardeniya@axl')">Copy</button>
-            </div>
-            <div class="upi-item">
-                <span>ayushhardeniya@ibl</span> <button onclick="copyText('ayushhardeniya@ibl')">Copy</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bank Transfer Section -->
-    <section id="bank" class="content hidden">
-        <h3>Bank Transfer</h3>
-        <p>Use the following details to transfer directly:</p>
-        <div class="bank-details">
-            <span onclick="copyText('Ayush Sharma')" class="copyable">Name: Ayush Sharma</span>
-            <span onclick="copyText('1234567890')" class="copyable">Account Number: 1234567890</span>
-            <span onclick="copyText('SBI0001234')" class="copyable">IFSC: SBI0001234</span>
-            <span onclick="copyText('State Bank of India')" class="copyable">Bank: State Bank of India</span>
-            <span onclick="copyText('Bhopal Branch')" class="copyable">Branch: Bhopal Branch</span>
-        </div>
-    </section>
-
-    <!-- Dark Mode Toggle -->
-    <button id="dark-mode-toggle">🌙</button>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 NexPay. All Rights Reserved.</p>
+        <p>&copy; 2025 NexPay. All Rights Reserved.</p>
         <a href="terms.html">Terms & Conditions</a> | <a href="contact.html">Contact Us</a>
     </footer>
-
-    <script>
-        // Copy Function
-        function copyText(text) {
-            navigator.clipboard.writeText(text);
-            alert("Copied: " + text);
-        }
-
-        // Tab Switching
-        function showTab(tab) {
-            document.querySelectorAll(".content").forEach(el => el.classList.add("hidden"));
-            document.getElementById(tab).classList.remove("hidden");
-
-            document.querySelectorAll(".tab").forEach(el => el.classList.remove("active"));
-            document.querySelector(`[onclick="showTab('${tab}')"]`).classList.add("active");
-        }
-
-        // Dark Mode Toggle
-        document.getElementById("dark-mode-toggle").addEventListener("click", function() {
-            document.body.classList.toggle("dark-mode");
-        });
-
-        // QR Code Download
-        function downloadQR() {
-            const link = document.createElement("a");
-            link.href = "qr-code.png";
-            link.download = "NexPay_QR.png";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
-
-    <style>
-        /* General Styles */
-        body { font-family: Arial, sans-serif; padding: 20px; transition: background 0.3s; }
-        h1, h2 { text-align: center; }
-        .hidden { display: none; }
-
-        /* Header Image */
-        .header-img { width: 100%; height: auto; }
-
-        /* Floating Logo */
-        .floating-logo { position: fixed; top: 20px; left: 20px; width: 50px; }
-
-        /* Tabs */
-        .tabs { display: flex; justify-content: center; }
-        .tab { padding: 10px; cursor: pointer; background: lightgray; margin: 5px; border-radius: 5px; }
-        .tab.active { background: steelblue; color: white; }
-
-        /* QR Code */
-        .qr-code { display: block; margin: 20px auto; width: 150px; }
-
-        /* UPI & Bank Transfer Section */
-        .upi-item, .bank-details span { display: flex; justify-content: space-between; padding: 10px; }
-        .copyable { color: blue; cursor: pointer; }
-
-        /* Dark Mode */
-        .dark-mode { background: black; color: white; }
-        #dark-mode-toggle { position: fixed; top: 10px; right: 10px; cursor: pointer; background: gray; padding: 5px; }
-
-        /* Footer */
-        footer { text-align: center; padding: 20px; background: #222; color: white; position: relative; bottom: 0; }
-        footer a { color: lightblue; margin: 0 10px; }
-    </style>
 
 </body>
 </html>
