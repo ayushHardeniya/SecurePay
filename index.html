@@ -8,66 +8,63 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-
-    <!-- Header Section -->
     <header>
-        <img src="header-image.jpg" alt="NexPay Header" class="header-img">
+        <img src="PayHeader.PNG" alt="NexPay Header" class="header-image">
         <h1>NexPay</h1>
-        <h3>Powered by Ayush Hardeniya</h3>
+        <p class="subheading">Powered by Ayush Hardeniya</p>
     </header>
 
-    <!-- Floating Logo -->
-    <div class="floating-logo">
-        <img src="logo.png" alt="NexPay Logo">
-    </div>
+    <main>
+        <div class="floating-logo">
+            <img src="profile pic.jpg" alt="NexPay Logo">
+        </div>
 
-    <!-- Payment Section -->
-    <div class="container">
-        <h2>Select Payment Method</h2>
+        <section class="description">
+            <p>Select an option to proceed with the payment:</p>
+        </section>
 
-        <!-- 3D Tab Section -->
         <div class="tabs">
-            <button class="tab-link active" onclick="openTab(event, 'UPI')">UPI Payment</button>
-            <button class="tab-link" onclick="openTab(event, 'Bank')">Bank Transfer</button>
+            <button class="tab-button active" onclick="openTab(event, 'upi')">UPI Payment</button>
+            <button class="tab-button" onclick="openTab(event, 'qr')">QR Code</button>
+            <button class="tab-button" onclick="openTab(event, 'bank')">Bank Transfer</button>
         </div>
 
-        <!-- UPI Payment Tab -->
-        <div id="UPI" class="tab-content active">
-            <h3>UPI Payment Options</h3>
-            <p>Scan the QR code or copy any UPI ID below.</p>
-            <img src="qr-code.png" alt="UPI QR Code" class="qr-code">
-            <button onclick="downloadQR()">Download QR Code</button>
-            
-            <ul class="upi-list">
-                <li><span>ayushhardeniya@oksbi</span> <button onclick="copyText('ayushhardeniya@oksbi')">Copy</button></li>
-                <li><span>ayushhardeniya@okaxis</span> <button onclick="copyText('ayushhardeniya@okaxis')">Copy</button></li>
-                <li><span>ayushhardeniya@okicici</span> <button onclick="copyText('ayushhardeniya@okicici')">Copy</button></li>
-                <li><span>ayushhardeniya@okhdfcbank</span> <button onclick="copyText('ayushhardeniya@okhdfcbank')">Copy</button></li>
-                <li><span>ayushhardeniya@ybl</span> <button onclick="copyText('ayushhardeniya@ybl')">Copy</button></li>
-                <li><span>ayushhardeniya@axl</span> <button onclick="copyText('ayushhardeniya@axl')">Copy</button></li>
-                <li><span>ayushhardeniya@ibl</span> <button onclick="copyText('ayushhardeniya@ibl')">Copy</button></li>
-            </ul>
+        <div id="upi" class="tab-content active">
+            <h2>UPI Payment</h2>
+            <p>Click on any UPI ID to copy:</p>
+            <div class="upi-list">
+                <p onclick="copyText('ayushhardeniya@oksbi')">ayushhardeniya@oksbi</p>
+                <p onclick="copyText('ayushhardeniya@okaxis')">ayushhardeniya@okaxis</p>
+                <p onclick="copyText('ayushhardeniya@okicici')">ayushhardeniya@okicici</p>
+                <p onclick="copyText('ayushhardeniya@okhdfcbank')">ayushhardeniya@okhdfcbank</p>
+                <p onclick="copyText('ayushhardeniya@ybl')">ayushhardeniya@ybl</p>
+                <p onclick="copyText('ayushhardeniya@axl')">ayushhardeniya@axl</p>
+                <p onclick="copyText('ayushhardeniya@ibl')">ayushhardeniya@ibl</p>
+            </div>
         </div>
 
-        <!-- Bank Transfer Tab -->
-        <div id="Bank" class="tab-content">
-            <h3>Bank Transfer Details</h3>
-            <p>Click on the details below to copy.</p>
-            <ul class="bank-details">
-                <li onclick="copyText('Ayush Sharma')">Name: <span class="copy-text">Ayush Sharma</span></li>
-                <li onclick="copyText('123456789012345')">Account No: <span class="copy-text">123456789012345</span></li>
-                <li onclick="copyText('SBI Bank')">Bank: <span class="copy-text">SBI Bank</span></li>
-                <li onclick="copyText('Bhopal Branch')">Branch: <span class="copy-text">Bhopal Branch</span></li>
-                <li onclick="copyText('SBIN0001234')">IFSC Code: <span class="copy-text">SBIN0001234</span></li>
-            </ul>
+        <div id="qr" class="tab-content">
+            <h2>Scan QR Code</h2>
+            <img src="GooglePayQR.png" alt="UPI QR Code" class="qr-image">
+            <button class="download-btn" onclick="downloadQR()">Download QR Code</button>
         </div>
-    </div>
 
-    <!-- Footer -->
+        <div id="bank" class="tab-content">
+            <h2>Bank Transfer</h2>
+            <p>Click to copy:</p>
+            <div class="bank-details">
+                <p onclick="copyText('Ayush Sharma')"><strong>Name:</strong> Ayush Sharma</p>
+                <p onclick="copyText('1234567890')"><strong>Account No.:</strong> 1234567890</p>
+                <p onclick="copyText('SBI Bank')"><strong>Bank:</strong> SBI Bank</p>
+                <p onclick="copyText('XYZ Branch')"><strong>Branch:</strong> XYZ Branch</p>
+                <p onclick="copyText('SBIN0012345')"><strong>IFSC Code:</strong> SBIN0012345</p>
+            </div>
+        </div>
+    </main>
+
     <footer>
         <p>&copy; 2025 NexPay. All Rights Reserved.</p>
-        <a href="terms.html">Terms & Conditions</a> | <a href="contact.html">Contact Us</a>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="contact.html">Contact Us</a></p>
     </footer>
-
 </body>
 </html>
