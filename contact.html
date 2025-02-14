@@ -16,6 +16,17 @@
   .contact-form button {
     background: #00ff99; border: none; padding: 10px 15px; color: black; cursor: pointer;
   }
+  .form-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Adjust max width as per design */
+    margin: auto;
+  }
+  .form-container iframe {
+    width: 100%;
+    height: 600px; /* Adjust height as needed */
+    border: none;
+  }
 </style>
 </head>
 <body>
@@ -24,7 +35,9 @@
   <div style="height: 2px; background-color: #00ff99; width: 100%; margin: 20px 0;"></div>
   <br>
   <p>Have any issues or inquiries? Reach out to us.</p>
+  <div class="form-container">
   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfCsbqWLDHFCOIbo1C4dfHIuh7B8dDHxb1-KVp360JGwlCQpA/viewform?embedded=true" width="640" height="837" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
 </div>
 </body>
 </html>
