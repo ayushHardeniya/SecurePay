@@ -87,37 +87,15 @@
 .bright-mode-toggle:hover {
     background: rgba(230, 230, 230, 0.9);
 }
-
-/* Dark Mode Styling */
-.dark-mode .bright-mode-toggle {
-    background: rgba(0, 0, 0, 0.8);
-    color: #f0f0f0;
+/*Mode toggle*/
+body.dark-mode {
+    background-color: #121212;
+    color: white;
 }
-
-/* Dark Mode Hover Effect */
-.dark-mode .bright-mode-toggle:hover {
-    background: rgba(50, 50, 50, 0.9);
+body.bright-mode {
+    background-color: white;
+    color: black;
 }
-    /* Main Container with Glassmorphism */
-    .container {
-      max-width: 900px;
-      margin: 40px auto 80px auto;
-      padding: 30px;
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      text-align: center;
-    }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    .description {
-      font-size: 18px;
-      margin-bottom: 25px;
-      color: #ccc;
-    }
     /* Tabs Styling */
     .tabs {
       display: flex;
@@ -260,19 +238,6 @@
     }
   </style>
   <script>
-/*Bright mode toggle*/
-function toggleMode() {
-            document.body.classList.toggle('bright-mode');
-            let isBright = document.body.classList.contains('bright-mode');
-            localStorage.setItem('theme', isBright ? 'bright' : 'dark');
-        }
-
-        // Load saved mode
-        window.onload = function() {
-            if (localStorage.getItem('theme') === 'bright') {
-                document.body.classList.add('bright-mode');
-            }
-        };
     // Preserve UPI copy functionality
     function copyToClipboard(id) {
       var text = document.getElementById(id).innerText;
@@ -303,16 +268,36 @@ function toggleMode() {
       document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
     }
     // Dark mode toggle
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+    const toggleButton = document.getElementById("toggleMode");
+const body = document.body;
+
+// Load saved mode
+const savedMode = localStorage.getItem("mode");
+if (savedMode) {
+    body.classList.add(savedMode);
+    toggleButton.textContent = savedMode === "dark-mode" ? "Bright Mode" : "Dark Mode";
+}
+
+toggleButton.addEventListener("click", () => {
+    if (body.classList.contains("dark-mode")) {
+        body.classList.remove("dark-mode");
+        body.classList.add("bright-mode");
+        localStorage.setItem("mode", "bright-mode");
+        toggleButton.textContent = "Dark Mode";
+    } else {
+        body.classList.remove("bright-mode");
+        body.classList.add("dark-mode");
+        localStorage.setItem("mode", "dark-mode");
+        toggleButton.textContent = "Bright Mode";
     }
+});
   </script>
 </head>
 <body>
   <!-- Header & Floating Logo -->
   <div class="header"></div>
   <img src="image.png" alt="ayushHardeniya Logo" class="logo">
-  <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+  <button id="toggleMode">Dark Mode</button>
   
   <!-- Main Container -->
   <div class="container">
