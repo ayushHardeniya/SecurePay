@@ -170,6 +170,16 @@
       transform: scale(1.05);
       box-shadow: 0 0 20px #00ff99;
     }
+/*Animation for tabs*/
+.content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
     /* UPI List */
     .upi-list {
       list-style: none;
