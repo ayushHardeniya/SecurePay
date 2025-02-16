@@ -68,23 +68,36 @@
     .logo.show {
       top: 20px;
     }
-    /* Dark Mode Toggle */
-    .dark-mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      border: none;
-      color: #f0f0f0;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1100;
-      transition: background 0.3s;
-    }
-    .dark-mode-toggle:hover {
-      background: #000;
-    }
+    /* Bright Mode Toggle */
+.bright-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Light background for bright mode */
+    border: none;
+    color: #000000; /* Black text for contrast */
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Hover effect */
+.bright-mode-toggle:hover {
+    background: rgba(230, 230, 230, 0.9);
+}
+
+/* Dark Mode Styling */
+.dark-mode .bright-mode-toggle {
+    background: rgba(0, 0, 0, 0.8);
+    color: #f0f0f0;
+}
+
+/* Dark Mode Hover Effect */
+.dark-mode .bright-mode-toggle:hover {
+    background: rgba(50, 50, 50, 0.9);
+}
     /* Main Container with Glassmorphism */
     .container {
       max-width: 900px;
@@ -237,6 +250,19 @@
     }
   </style>
   <script>
+/*Bright mode toggle*/
+function toggleMode() {
+            document.body.classList.toggle('bright-mode');
+            let isBright = document.body.classList.contains('bright-mode');
+            localStorage.setItem('theme', isBright ? 'bright' : 'dark');
+        }
+
+        // Load saved mode
+        window.onload = function() {
+            if (localStorage.getItem('theme') === 'bright') {
+                document.body.classList.add('bright-mode');
+            }
+        };
     // Preserve UPI copy functionality
     function copyToClipboard(id) {
       var text = document.getElementById(id).innerText;
