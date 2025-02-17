@@ -5,237 +5,258 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>aHPay-ayushHardeniya</title>
   <style>
-    /* Basic Reset and Fonts */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: linear-gradient(135deg, #1a1a1a, #333333);
-      color: #f0f0f0;
-      line-height: 1.6;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    /* Header with Background Image */
-    .header {
-      width: 100%;
-      height: 220px;
-      background: url('PayHeader.PNG') no-repeat center;
-      background-size: cover;
-      position: relative;
-    }
-     
-    @keyframes fadeSlide {
-        0% { 
-            opacity: 0; 
-            transform: translateY(-20px); 
-        }
-        100% { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
-    }
+   /* Basic Reset and Fonts */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: linear-gradient(135deg, #1a1a1a, #333333);
+  color: #f0f0f0;
+  line-height: 1.6;
+  text-align: center;
+  padding: 10px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-    .animated-title {
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        font-size: 2.5em; 
-        color: white; 
-        text-shadow: 0 0 5px #00ff99; /* Minimal glow effect */
-        animation: fadeSlide 1s ease-out;
-    }
+/* Header with Background Image */
+.header {
+  width: 100%;
+  height: 220px;
+  background: url('PayHeader.PNG') no-repeat center;
+  background-size: cover;
+  position: relative;
+}
 
-    .animated-title img {
-        width: 50px; 
-        height: 50px; 
-        margin-right: 12px; 
-        filter: drop-shadow(0 0 5px #00ff99); /* Soft shadow for a gentle glow */
-        animation: fadeSlide 1s ease-out;
-    }
-    
-    /* Floating Logo */
-    .logo {
-      position: fixed;
-      top: -100px;
-      left: 30px;
-      width: 80px;
-      transition: top 0.3s ease;
-      z-index: 1000;
-    }
-    .logo.show {
-      top: 20px;
-    }
-    /* Bright Mode Toggle */
+/* Animated Title */
+.animated-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  color: white;
+  text-shadow: 0 0 5px #00ff99;
+  animation: fadeSlide 1s ease-out;
+}
+.animated-title img {
+  width: 50px;
+  height: 50px;
+  margin-right: 12px;
+  filter: drop-shadow(0 0 5px #00ff99);
+  animation: fadeSlide 1s ease-out;
+}
+
+/* Floating Logo */
+.logo {
+  position: fixed;
+  top: -100px;
+  left: 30px;
+  width: 80px;
+  transition: top 0.3s ease;
+  z-index: 1000;
+}
+.logo.show {
+  top: 20px;
+}
+
+/* Mode Toggle */
 .bright-mode-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.9); /* Light background for bright mode */
-    border: none;
-    color: #000000; /* Black text for contrast */
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1100;
-    transition: background 0.3s, color 0.3s;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1100;
+  transition: background 0.3s, color 0.3s;
+}
+.bright-mode-toggle:hover {
+  background: rgba(230, 230, 230, 0.9);
 }
 
-/* Hover effect */
-.bright-mode-toggle:hover {
-    background: rgba(230, 230, 230, 0.9);
-}
-/*Mode toggle*/
 body.dark-mode {
-    background-color: #121212;
-    color: white;
+  background-color: #121212;
+  color: white;
 }
 body.bright-mode {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
-    /* Tabs Styling */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 25px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .tab {
-      flex: 1;
-      padding: 12px 0;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .tab:hover {
-      background: rgba(0, 255, 153, 0.2);
-    }
-    .tab.active {
-      background: #00ff99;
-      color: #000;
-      box-shadow: 0 0 15px #00ff99;
-    }
-    /* Section Contents */
-    .content {
-      display: none;
-      animation: fadeIn 0.5s ease-in-out;
-      text-align: left;
-      margin-top: 20px;
-    }
-    .content.active {
-      display: block;
-    }
-    /* Payment Button */
-    .button {
-      display: inline-block;
-      background: #00ff99;
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      text-decoration: none;
-      margin-bottom: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ff99;
-    }
-/*Animation for tabs*/
+
+/* Tabs Styling */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+}
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.tab:hover {
+  background: rgba(0, 255, 153, 0.2);
+}
+.tab.active {
+  background: #00ff99;
+  color: #000;
+  box-shadow: 0 0 15px #00ff99;
+}
+
+/* Section Contents */
 .content {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
 }
 .content.active {
-    opacity: 1;
-    transform: translateY(0);
+  display: block;
 }
-    /* UPI List */
-    .upi-list {
-      list-style: none;
-      margin-top: 15px;
-    }
-    .upi-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 12px;
-      margin: 8px 0;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-    }
-    .copy-btn {
-      background: #007bff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .copy-btn:hover {
-      background: #0056b3;
-    }
-    /* QR Section */
-    .qr-section {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .qr-section img {
-      width: 220px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,255,153,0.5);
-    }
-    .download-btn {
-      display: inline-block;
-      background: #007bff;
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 12px;
-      transition: background 0.3s ease;
-    }
-    .download-btn:hover {
-      background: #0056b3;
-    }
-    /* Bank Transfer Section */
-    .bank-details p {
-      margin: 8px 0;
-      font-size: 16px;
-    }
-    .bank-details strong {
-      color: #00ff99;
-    }
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.85);
-      color: #aaa;
-      font-size: 14px;
-      margin-top: 40px;
-    }
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      h1 { font-size: 28px; }
-      .description { font-size: 16px; }
-      .tab { font-size: 14px; padding: 10px 0; }
-      .button { font-size: 16px; }
-    }
+
+/* Ensure content does not touch edges */
+.container, .bank-details, .footer {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+/* Fix text alignment issue */
+.bank-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  text-align: center;
+}
+.bank-details strong {
+  color: #00ff99;
+}
+
+/* Payment Button */
+.button {
+  display: inline-block;
+  background: #00ff99;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ff99;
+}
+
+/* Animation for Tabs */
+.content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* UPI List */
+.upi-list {
+  list-style: none;
+  margin-top: 15px;
+}
+.upi-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+.copy-btn {
+  background: #007bff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.copy-btn:hover {
+  background: #0056b3;
+}
+
+/* QR Section */
+.qr-section {
+  text-align: center;
+  margin: 20px 0;
+}
+.qr-section img {
+  width: 220px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,255,153,0.5);
+}
+.download-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 12px;
+  transition: background 0.3s ease;
+}
+.download-btn:hover {
+  background: #0056b3;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #aaa;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h1 { font-size: 28px; }
+  .description { font-size: 16px; }
+  .tab { font-size: 14px; padding: 10px 0; }
+  .button { font-size: 16px; }
+
+  /* Ensuring mobile padding */
+  .container, .bank-details, .footer {
+    max-width: 95%;
+  }
+  }
   </style>
   <script>
     // Preserve UPI copy functionality
